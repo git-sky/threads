@@ -6,7 +6,8 @@ package cn.com.sky.threads.thread.producer_consumer.demo2;
  * notify方法很容易引起死锁。
  * notifyAll方法则是线程的安全唤醒方法。
  * 
- * wait()线程是被放入对象的等待池中，等待池的线程只有通过notify、notifyAll或者interrupt才能进入锁池中，而锁池的线程只有拿到锁标识后才进入runnable状态等待cpu时间片。
+ * wait()线程是被放入对象的等待池中，等待池的线程只有通过notify、notifyAll或者interrupt才能进入锁池中，
+ * 而锁池的线程只有拿到锁标识后才进入runnable状态等待cpu时间片。
  * 
  * 等待池-->锁池-->拿到锁--->抢占cpu
  * 

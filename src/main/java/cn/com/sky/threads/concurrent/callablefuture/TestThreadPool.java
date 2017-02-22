@@ -2,6 +2,8 @@ package cn.com.sky.threads.concurrent.callablefuture;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -50,7 +52,7 @@ import java.util.concurrent.TimeUnit;
 public class TestThreadPool {
 	public static void main(String[] args) {
 		// 创建一个可重用固定线程数的线程池
-		// ExecutorService pool = Executors.newFixedThreadPool(2);
+//		 ExecutorService pool = Executors.newFixedThreadPool(2);
 		//
 		// //创建一个使用单个 worker 线程的 Executor，以无界队列方式来运行该线程。
 		// ExecutorService pool = Executors.newSingleThreadExecutor();

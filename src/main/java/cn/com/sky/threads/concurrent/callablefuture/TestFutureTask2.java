@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
  * submit(Runnable task)--->new FutureTask(Runnable task,T value)--->new Sync(Executors.callable(runnable, result))-->
  * new RunnableAdapter<T>(task, result)-->task.run();
  * 
- * submit(Runnable task)--->new FutureTask<T>(callable)---> new Sync(callable)
+ * submit(Callable task)--->new FutureTask<T>(callable)---> new Sync(callable)
  * 
  * execute(Runnable command)
  */
@@ -29,7 +29,7 @@ public class TestFutureTask2 {
 		TaskCallable task = new TaskCallable();
 		FutureTask<Integer> futureTask = new FutureTask<Integer>(task);
 		executor.submit(futureTask);
-		// executor.execute(futureTask);
+//		 executor.execute(futureTask);
 		executor.shutdown();
 
 		// 第二种方式，注意这种方式和第一种方式效果是类似的，只不过一个使用的是ExecutorService，一个使用的是Thread

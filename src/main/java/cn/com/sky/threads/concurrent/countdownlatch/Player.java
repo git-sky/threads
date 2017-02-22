@@ -2,6 +2,15 @@ package cn.com.sky.threads.concurrent.countdownlatch;
 
 import java.util.concurrent.CountDownLatch;
 
+/**
+ * <pre>
+ * 
+ * 使用CountDownLatch进行异步转同步操作，每个线程退出前必须调用countDown方法，线程执行代码注意catch异常，
+ * 确保countDown方法可以执行，避免主线程无法执行至countDown方法，直到超时才返回结果。 
+ * 说明：注意，子线程抛出异常堆栈，不能在主线程try-catch到。
+ * 
+ * </pre>
+ */
 public class Player implements Runnable {
 
 	private int id;

@@ -21,7 +21,7 @@ package cn.com.sky.threads.thread.synchronize.principle;
  * 
  * 在修饰方法的时候默认是当前对象作为锁的对象.
  * 
- * 在修饰类时候默认是当前类的Class对象作为锁的对象.
+ * 在修饰类时候默认是当前类的Class对象作为锁的对f象.
  * 
  * synchronized会在进入同步块的前后分别形成monitorenter和monitorexit字节码指令。
  * 在执行monitorenter指令时会尝试获取对象的锁,如果此对象没有被锁,或者此对象已经被当前线程锁住,那么锁的计数器加一,

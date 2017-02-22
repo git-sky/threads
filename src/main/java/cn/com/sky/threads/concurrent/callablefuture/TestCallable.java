@@ -30,8 +30,8 @@ public class TestCallable {
 		ArrayList<Future<?>> results = new ArrayList<>();
 
 		for (int i = 0; i < 10; i++) {
-//			 results.add(exec.submit(new TaskCallable(i)));
-			results.add(exec.submit(new TaskRunnable(i),"aaaaaaa"));
+			// results.add(exec.submit(new TaskCallable(i)));
+			results.add(exec.submit(new TaskRunnable(i), "aaaaaaa"));
 		}
 
 		for (Future fs : results) {
@@ -44,7 +44,7 @@ public class TestCallable {
 		exec.shutdown();
 	}
 
-	static class TaskCallable implements Callable {
+	static class TaskCallable implements Callable<Object> {
 
 		private int id;
 
@@ -68,7 +68,7 @@ public class TestCallable {
 
 		@Override
 		public void run() {
-//			System.out.println("run........");
+			// System.out.println("run........");
 		}
 	}
 

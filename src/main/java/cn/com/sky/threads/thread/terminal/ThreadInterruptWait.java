@@ -1,5 +1,8 @@
 package cn.com.sky.threads.thread.terminal;
 
+/**
+ * 中断wait方法，结束线程。
+ */
 public class ThreadInterruptWait extends Thread {
 
 	public synchronized void run() {

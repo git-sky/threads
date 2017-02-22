@@ -1,5 +1,8 @@
 package cn.com.sky.threads.thread.terminal;
 
+/**
+ * 中断sleep方法，结束线程。
+ */
 public class ThreadInterruptSleep extends Thread {
 
 	public void run() {
@@ -14,14 +17,14 @@ public class ThreadInterruptSleep extends Thread {
 	public static void main(String[] args) throws Exception {
 		Thread t = new ThreadInterruptSleep();
 		t.start();
-		
+
 		System.out.println("在按任意键中断线程!");
 		System.in.read();
-		
+
 		t.interrupt();
-		
+
 		t.join();
-		
+
 		System.out.println("线程已经退出!");
 	}
 }

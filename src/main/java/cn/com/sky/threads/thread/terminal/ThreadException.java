@@ -1,14 +1,20 @@
 package cn.com.sky.threads.thread.terminal;
 
+/**
+ * 发生未捕获异常，线程结束。 如果捕获之后，就可以继续执行。
+ */
 public class ThreadException extends Thread {
-	public volatile boolean exit = false;
 
 	public void run() {
-		while (!exit) {
+		while (true) {
 			System.out.println("i am running.........");
 			int zero = 0;
+			// try {
 			int a = 10 / zero;
-			System.out.println(a);
+			// } catch (Exception e) {
+			//
+			// }
+			System.out.println("i am ok....");
 		}
 	}
 
