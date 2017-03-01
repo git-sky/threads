@@ -5,8 +5,8 @@ import java.util.concurrent.LinkedBlockingQueue;
 /**
  * <pre>
  * 
- *  阻塞队列
- *  有头指针和尾指针的 单链表结构
+ * 阻塞队列
+ * 有头指针和尾指针的 单链表结构
  *  
  * 原理：
  * 链表实现， 有两把锁：
