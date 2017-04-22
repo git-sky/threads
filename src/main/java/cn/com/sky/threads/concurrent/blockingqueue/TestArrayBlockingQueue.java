@@ -12,7 +12,7 @@ import java.util.concurrent.ArrayBlockingQueue;
  *  规定大小的BlockingQueue，其构造函数必须带一个int参数来指明其大小。其所含的对象是以FIFO（先入先出）顺序排序的。
  *  
  * 实现原理：
- *  循环数组实现,有一把锁lock，两个条件变量notEmpty，notFull。控制数组中元素的获取和加入。
+ * 循环数组实现,有一把锁lock，两个条件变量notEmpty，notFull,控制数组中元素的获取和加入。takeIndex,putIndex获取元素的索引和存放元素的索引。
  * 
  */
 public class TestArrayBlockingQueue {
