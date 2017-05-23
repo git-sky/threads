@@ -4,6 +4,9 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * CountDownLatch:闭锁,减法器
+ */
 public class TestCountDownLatch {
 	public static void main(String[] args) throws InterruptedException {
 		// 开始的倒数锁
@@ -22,6 +25,7 @@ public class TestCountDownLatch {
 						Thread.sleep((long) (Math.random() * 10000));
 						System.out.println("No." + NO + " arrived");
 					} catch (InterruptedException e) {
+						e.printStackTrace();
 					} finally {
 						end.countDown();
 					}
