@@ -2,8 +2,8 @@ package cn.com.sky.threads.concurrent.callablefuture;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.Callable;
+import java.util.concurrent.RunnableFuture;
 import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -17,28 +17,44 @@ import java.util.concurrent.TimeUnit;
  * ExecutorService中，execute与submit区别:
  * 
  * 1.execute没有返回值，submit有返回值Future。
- * 2.execute有一种参数Runnable，submit有两种参数Runnable与Callable。
- * 3.可以根据submit的返回值Future处理很多事情，捕获异常，取消任务等等。
+ * 2.execute有一种参数 Runnable，submit有两种参数 Runnable 与 Callable。
+ * 3.可以根据 submit 的返回值 Future 处理很多事情，捕获异常，取消任务等等。
  * 4.Future submit(Runnable task)，future.get()返回null。
  * 
  * 方法定义如下：
- *  1. void execute(Runnable command);
+ *  1. execute(Runnable command);
  *  
  *  2. Future submit(Runnable task);
  *    执行流程：
- *    a> submit(Runnable task)--->new FutureTask(Runnable task,T value)--->new Sync(Executors.callable(runnable, result))--> new RunnableAdapter<T>(task, result)-->task.run();
+ *    a> RunnableFuture<T> ftask = newTaskFor(task, null);
+ *    
+ *    newTaskFor(Runnable runnable, T value)--->new FutureTask(Runnable task,T value)--->new Sync(Executors.callable(runnable, result))--> new RunnableAdapter<T>(task, result)-->call()-->task.run();
+ *    
+ *    b> execute(Runnable command)
+ *    
+ *  3. Future submit(Runnable task, T result);
+ *    执行流程：
+ *    a> RunnableFuture<T> ftask = newTaskFor(task, result);
+ *    
+ *    newTaskFor(Runnable runnable, T value)--->new FutureTask(Runnable task,T value)--->new Sync(Executors.callable(runnable, result))--> new RunnableAdapter<T>(task, result)-->call()-->task.run();
+ *    
  *    b> execute(Runnable command)
  *               
  *  
- *  3. Future submit(Callable task);
+ *  4. Future submit(Callable task);
  *    执行流程：
- *    a> submit(Runnable task)--->new FutureTask<T>(callable)---> new Sync(callable)
+ *    a> RunnableFuture<T> ftask = newTaskFor(task);
+ *    
+ *    newTaskFor(Callable<T> callable)---> new FutureTask<T>(callable)---> new Sync(callable);
+ *    
  *    b> execute(Runnable command)
  *    
  *    
- * 本质上最后都是调用的execute(Runnable command)方法。
+ *  (2/3/4)> FutureTask.run()--->  sync.innerRun()---> callable.call()---> sync.innerSet(v)---> done()(ExecutorCompletionService类实现了这个方法);
+ *    
+ * 本质上最后都是调用的 execute(Runnable command) 方法。
  * 
- *  Callable执行本质上还是被Thread类的run方法调用执行。
+ *  Callable 执行本质上还是被Thread类的run方法调用执行。
  * 
  * 
  * shutdown()
@@ -52,7 +68,7 @@ import java.util.concurrent.TimeUnit;
 public class TestThreadPool {
 	public static void main(String[] args) {
 		// 创建一个可重用固定线程数的线程池
-//		 ExecutorService pool = Executors.newFixedThreadPool(2);
+		// ExecutorService pool = Executors.newFixedThreadPool(2);
 		//
 		// //创建一个使用单个 worker 线程的 Executor，以无界队列方式来运行该线程。
 		// ExecutorService pool = Executors.newSingleThreadExecutor();
@@ -74,6 +90,17 @@ public class TestThreadPool {
 		pool.execute(t3);
 		pool.execute(t4);
 		pool.execute(t5);
+
+		pool.submit(t1);
+		pool.submit(t1, "result");
+		pool.submit(new Callable() {
+			@Override
+			public Object call() throws Exception {
+				return null;
+			}
+		});
+
+		// Executors.callable(task)//runnable转callable
 
 		// 关闭线程池
 		pool.shutdown();

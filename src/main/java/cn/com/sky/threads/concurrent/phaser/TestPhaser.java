@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
  * CountDownLatch中另一个重要的方法是countDown()，使计数器减一，当计数器为0时所有等待的线程开始执行，
  * 在Phaser中，与之对应的方法是arrive()。
  * 
- * 下面的例子创建了3个线程 ，打印一些字母，但是线程创建好后并不立刻执行，而是在主程序中对其进行控制，3秒钟后所有进程同时开始执行，
+ * 下面的例子创建了3个线程 ，打印一些字母，但是线程创建好后并不立刻执行，而是在主程序中对其进行控制，3秒钟后所有线程同时开始执行，
  * 以下是使用Phaser实现的版本 ，在注释中解释了如何改造成CountDownLatch版本。
  * 
  * </pre>
@@ -25,19 +25,19 @@ import java.util.concurrent.TimeUnit;
 public class TestPhaser {
 
 	public static void main(String[] args) {
-		
+
 		Phaser phaser = new Phaser(1); // 此处可使用CountDownLatch(1)
-		
+
 		for (int i = 0; i < 3; i++) {
 			new MyThread((char) (97 + i), phaser).start();
 		}
-		
+
 		try {
 			TimeUnit.SECONDS.sleep(3);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		
+
 		phaser.arrive(); // 此处可使用latch.countDown()
 	}
 }

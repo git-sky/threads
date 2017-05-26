@@ -8,7 +8,7 @@ import java.util.concurrent.locks.LockSupport;
  * LockSupport是JDK中比较底层的类，用来创建锁和其他同步工具类的基本线程阻塞原语。
  * 
  * Java锁和同步器框架的核心 AQS:
- * AbstractQueuedSynchronizer，就是通过调用 LockSupport.park()和 LockSupport.unpark()实现线程的阻塞和唤醒 的。
+ * AbstractQueuedSynchronizer，就是通过调用 LockSupport.park()和 LockSupport.unpark()实现线程的阻塞和唤醒的。
  * LockSupport 很类似于二元信号量(只有1个许可证可供使用)，如果这个许可还没有被占用，当前线程获取许可并继 续 执行；如果许可已经被占用，当前线 程阻塞，等待获取许可。
  * 
  * 

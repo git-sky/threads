@@ -71,7 +71,7 @@ public class TestRecursiveAction extends RecursiveAction {
 	public static void main(String[] args) {
 		ProductListGenerator productListGenerator = new ProductListGenerator();
 		List<Product> products = productListGenerator.generate(10000);
-		TestRecursiveAction task = new TestRecursiveAction(products, 0, products.size(), 0.2);
+		RecursiveAction task = new TestRecursiveAction(products, 0, products.size(), 0.2);
 
 		ForkJoinPool pool = new ForkJoinPool();
 		pool.execute(task);

@@ -3,9 +3,9 @@ package cn.com.sky.threads.concurrent.callablefuture;
 import java.util.ArrayList;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * 
@@ -24,7 +24,7 @@ public class TestCallable {
 
 	public static void main(String[] args) throws InterruptedException, ExecutionException {
 
-		ExecutorService exec = Executors.newCachedThreadPool();
+		ThreadPoolExecutor exec = (ThreadPoolExecutor) Executors.newCachedThreadPool();
 
 		// Future相当于是用来存放Executor执行的结果的一种容器
 		ArrayList<Future<?>> results = new ArrayList<>();

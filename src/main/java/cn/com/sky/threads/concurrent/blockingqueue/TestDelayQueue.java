@@ -20,11 +20,15 @@ import java.util.concurrent.TimeUnit;
  * 3.DelayQueue队列中保存的是实现了Delayed接口的实现类，里面必须实现getDelay()和compareTo()方法，
  * 前者用于取DelayQueue里面的元素时判断是否到了延时时间，否则不予获取，是则获取。 compareTo()方法用于进行队列内部的排序。
  * 
+ * 4.使用PriorityQueue实现队列
+ * 
+ * 5.一把锁，一个条件变量
+ * 
  */
 class Student implements Runnable, Delayed {
 	private String name;
 	private long submitTime;// 交卷时间
-	private long workTime;// 考试时间
+	private long workTime;// 考试时间（做题的时间）
 
 	public Student() {
 
@@ -72,12 +76,13 @@ class Student implements Runnable, Delayed {
 
 class Teacher implements Runnable {
 	private DelayQueue<Student> students;
-//	private ExecutorService exec;
+
+	// private ExecutorService exec;
 
 	public Teacher(DelayQueue<Student> students, ExecutorService exec) {
 		super();
 		this.students = students;
-//		this.exec = exec;
+		// this.exec = exec;
 	}
 
 	@Override

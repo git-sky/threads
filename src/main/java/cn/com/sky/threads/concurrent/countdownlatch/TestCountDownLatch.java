@@ -6,6 +6,8 @@ import java.util.concurrent.Executors;
 
 /**
  * CountDownLatch:闭锁,减法器
+ * 
+ * AQS实现，await线程入队列，countDown唤醒后继线程。
  */
 public class TestCountDownLatch {
 	public static void main(String[] args) throws InterruptedException {

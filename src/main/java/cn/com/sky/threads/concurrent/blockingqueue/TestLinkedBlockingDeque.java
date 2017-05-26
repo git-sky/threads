@@ -11,7 +11,7 @@ import java.util.concurrent.LinkedBlockingDeque;
  * 
  * 
  * LinkedBlockingDeque：一个由双向链表结构组成的双向阻塞队列。
- * 有头指针，尾指针的 双向链表结构。
+ * 有头指针和尾指针的 双向链表结构。一把锁，两个条件变量。
  * 
  * 
  * 从结果可以看到，程序并没结束，而是阻塞住了，原因是栈已经满了，后面追加元素的操作都被阻塞了。

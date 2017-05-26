@@ -33,9 +33,9 @@ public class TestCondition {
 		for (int i = 0; i < 100; i++) {
 			try {
 				if ("main".equals(threadType)) {
-					business.main(i);
+					business.master(i);
 				} else {
-					business.sub(i);
+					business.slave(i);
 				}
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -49,7 +49,7 @@ class BusinessDemo {
 	private Lock lock = new ReentrantLock();
 	private Condition condition = lock.newCondition();
 
-	public void main(int loop) throws InterruptedException {
+	public void master(int loop) throws InterruptedException {
 		lock.lock();
 		try {
 			while (bool) {
@@ -65,7 +65,7 @@ class BusinessDemo {
 		}
 	}
 
-	public void sub(int loop) throws InterruptedException {
+	public void slave(int loop) throws InterruptedException {
 		lock.lock();
 		try {
 			while (!bool) {

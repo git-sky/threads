@@ -30,7 +30,7 @@ public class TestCompletionService {
 
 		ExecutorService executor = Executors.newCachedThreadPool();
 
-		CompletionService<Integer> comp = new ExecutorCompletionService<>(executor);
+		ExecutorCompletionService<Integer> comp = new ExecutorCompletionService<>(executor);
 
 		for (int i = 0; i < 5; i++) {
 			comp.submit(new Task());
@@ -42,6 +42,7 @@ public class TestCompletionService {
 
 		while (count < 5) {
 			Future<Integer> f = comp.poll();
+//			comp.take();
 			if (f == null) {
 				System.out.println(index + " 没发现有完成的任务");
 			} else {

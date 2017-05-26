@@ -35,7 +35,7 @@ public class TestRecursiveTask2 extends RecursiveTask<Integer> {
 		return f2.compute() + f1.join();
 	}
 
-	public static void main(String... args) throws InterruptedException, ExecutionException {
+	public static void main(String[] args) throws InterruptedException, ExecutionException {
 		ForkJoinTask<Integer> fjt = new TestRecursiveTask2(40);
 		ForkJoinPool fjpool = new ForkJoinPool();
 		fjpool.execute(fjt);

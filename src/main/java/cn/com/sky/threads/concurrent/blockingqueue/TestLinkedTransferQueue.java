@@ -28,7 +28,7 @@ public class TestLinkedTransferQueue {
 
 	public static void main(String[] args) {
 
-		TransferQueue<String> queue = new LinkedTransferQueue<String>();
+		LinkedTransferQueue<String> queue = new LinkedTransferQueue<String>();
 
 		try {
 			queue.transfer("element");

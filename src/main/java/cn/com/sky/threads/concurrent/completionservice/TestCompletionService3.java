@@ -21,6 +21,8 @@ import java.util.concurrent.LinkedBlockingQueue;
  * 你可以将Callable任务提交给它去执行，然后使用类似于队列中的take和poll方法， 在结果完整可用时获得这个结果，像一个打包的Future。
  * ExecutorCompletionService是实现CompletionService接口的一个类，并将计算任务委托给一个Executor。
  * 
+ * CompletionService=Executor+BlockingQueue
+ * 
  * ExecutorCompletionService的实现相当直观。
  * 它在构造函数中创建一个BlockingQueue，用它去保持完成的结果。计算完成时会调用FutureTask中的done方法。
  * 当提交一个任务后，首先把这个任务包装为一个QueueingFuture，它是FutureTask的一个子类，然后覆写done方法，将结果置入BlockingQueue中，
