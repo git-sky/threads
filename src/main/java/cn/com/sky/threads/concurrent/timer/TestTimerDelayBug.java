@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
  * 
  * 1、Timer管理延时任务的缺陷
  * 
- * a、以前在项目中也经常使用定时器，比如每隔一段时间清理项目中的一些垃圾文件，每个一段时间进行数据清洗；
+ * a、以前在项目中也经常使用定时器，比如每隔一段时间清理项目中的一些垃圾文件，每隔一段时间进行数据清洗；
  * 然而Timer是存在一些缺陷的，因为Timer在执行定时任务时只会创建一个线程， 所以如果存在多个任务，且任务时间过长，超过了两个任务的间隔时间，会发生一些缺陷 。
  * 
  * 下面定义了两个任务，预计是第一个任务1s后执行，第二个任务2s后执行，但是看运行结果： task2实际上是4s后才执行，正因为Timer内部是一个线程，而任务1所需的时间超过了两个任务间的间隔导致。
@@ -53,6 +53,8 @@ public class TestTimerDelayBug {
 		timer.schedule(task1, 1000);
 		timer.schedule(task2, 2000);
 
+		
+		
 		// 1s后执行，2s后执行
 		ScheduledExecutorService newScheduledThreadPool = Executors.newScheduledThreadPool(2);
 		newScheduledThreadPool.schedule(task1, 1000, TimeUnit.MILLISECONDS);
