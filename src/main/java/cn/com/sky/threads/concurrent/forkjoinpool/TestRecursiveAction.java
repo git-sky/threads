@@ -1,8 +1,9 @@
-package cn.com.sky.threads.concurrent.forkjoin;
+package cn.com.sky.threads.concurrent.forkjoinpool;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.RecursiveAction;
 import java.util.concurrent.TimeUnit;
 
@@ -69,12 +70,19 @@ public class TestRecursiveAction extends RecursiveAction {
 	}
 
 	public static void main(String[] args) {
+
 		ProductListGenerator productListGenerator = new ProductListGenerator();
-		List<Product> products = productListGenerator.generate(10000);
-		RecursiveAction task = new TestRecursiveAction(products, 0, products.size(), 0.2);
+		List<Product> products = productListGenerator.generate(10000);// 生产10000个商品.
+
+		// RecursiveAction task = new TestRecursiveAction(products, 0, products.size(), 0.2);
+
+		ForkJoinTask<?> task = new TestRecursiveAction(products, 0, products.size(), 0.2);
 
 		ForkJoinPool pool = new ForkJoinPool();
+		
 		pool.execute(task);
+		
+		//所有任务转为ForkJoinTask---> forkOrSubmit--->
 
 		do {
 			System.out.printf("Main: Thread Count: %d\n", pool.getActiveThreadCount());

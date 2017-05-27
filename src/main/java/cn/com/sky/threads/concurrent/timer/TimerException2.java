@@ -6,8 +6,10 @@ import java.util.TimerTask;
 /**
  * <pre>
  * 
- * 如果TimerTask抛出未检查的异常，Timer将会产生无法预料的行为。 Timer线程并不捕获异常，所以TimerTask抛出的未检查的异常会终止timer线程。
- * 这种情况下，Timer也不会再重新恢复线程的执行了;它错误的认为整个Timer都被取消了。 此时，已经被安排但尚未执行的TimerTask永远不会再执行了，新的任务也不能被调度了。
+ * 如果TimerTask抛出未检查的异常，Timer将会产生无法预料的行为。 
+ * Timer线程并不捕获异常，所以TimerTask抛出的未检查的异常会终止timer线程。
+ * 这种情况下，Timer也不会再重新恢复线程的执行了;它错误的认为整个Timer都被取消了。
+ * 此时，已经被安排但尚未执行的TimerTask永远不会再执行了，新的任务也不能被调度了。
  *
  */
 public class TimerException2 {
