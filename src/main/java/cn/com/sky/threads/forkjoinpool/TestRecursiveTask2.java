@@ -1,4 +1,4 @@
-package cn.com.sky.threads.concurrent.forkjoinpool;
+package cn.com.sky.threads.forkjoinpool;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ForkJoinPool;

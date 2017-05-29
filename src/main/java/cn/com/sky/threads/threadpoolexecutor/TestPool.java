@@ -1,4 +1,4 @@
-package cn.com.sky.threads.thread_pool;
+package cn.com.sky.threads.threadpoolexecutor;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

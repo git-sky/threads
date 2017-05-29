@@ -1,4 +1,4 @@
-package cn.com.sky.threads.concurrent.forkjoinpool;
+package cn.com.sky.threads.forkjoinpool;
 
 import static org.junit.Assert.*;
 
