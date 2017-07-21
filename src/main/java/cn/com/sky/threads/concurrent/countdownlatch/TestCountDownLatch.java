@@ -14,7 +14,7 @@ public class TestCountDownLatch {
 		// 开始的倒数锁
 		final CountDownLatch begin = new CountDownLatch(1);
 		// 结束的倒数锁
-		final CountDownLatch end = new CountDownLatch(10);
+		final CountDownLatch end = new CountDownLatch(10);// value=10;
 		// 十名选手
 		final ExecutorService exec = Executors.newFixedThreadPool(10);
 
@@ -29,7 +29,7 @@ public class TestCountDownLatch {
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					} finally {
-						end.countDown();
+						end.countDown();// value=value-1,当value=0时，unpark下一个节点
 					}
 				}
 			};
@@ -37,7 +37,7 @@ public class TestCountDownLatch {
 		}
 		System.out.println("Game Start");
 		begin.countDown();
-		end.await();
+		end.await();// 当value!=0时，park阻塞，当value=0时，unpark恢复
 		System.out.println("Game Over");
 		exec.shutdown();
 	}
