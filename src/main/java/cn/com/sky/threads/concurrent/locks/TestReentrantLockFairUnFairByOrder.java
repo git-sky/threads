@@ -1,10 +1,10 @@
 package cn.com.sky.threads.concurrent.locks;
 
+import org.junit.Test;
+
 import java.util.Collection;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-
-import org.junit.Test;
 
 /**
  * <pre>
@@ -13,7 +13,7 @@ import org.junit.Test;
  * 反观公平获取的过程，锁的获取就类似线性化的，每次都由sync队列中等待最长的线程（链表的第一个，sync队列是由尾部结点添加，当前输出的sync队列是逆序输出）获取锁。
  *
  */
-public class TestReentrantLockQueuedThreads {
+public class TestReentrantLockFairUnFairByOrder {
 	private static Lock fairLock = new ReentrantLock2(true);
 	private static Lock unfairLock = new ReentrantLock2();
 
@@ -36,7 +36,7 @@ public class TestReentrantLockQueuedThreads {
 		}
 	}
 
-	// @Test
+	 @Test
 	public void unfair() {
 		System.out.println("unfair version");
 		for (int i = 0; i < 5; i++) {

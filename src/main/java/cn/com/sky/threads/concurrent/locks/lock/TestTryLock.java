@@ -35,16 +35,16 @@ public class TestTryLock {
 	public void insert(Thread thread) {
 		if (lock.tryLock()) {// 如果立即获得锁，返回true，否则返回false。
 			try {
-				System.out.println(thread.getName() + "得到了锁");
+				System.out.println(thread.getName() + " get lock");
 				Thread.sleep(3000);
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
-				System.out.println(thread.getName() + "释放了锁");
+				System.out.println(thread.getName() + " release lock ");
 				lock.unlock();
 			}
 		} else {
-			System.out.println(thread.getName() + "获取锁失败");
+			System.out.println(thread.getName() + " get lock failure ");
 		}
 	}
 }

@@ -19,7 +19,7 @@ public class ThreadInterruptFlag extends Thread {
 		System.out.println("interrupted:" + Thread.interrupted());// true
 		System.out.println("interrupted:" + Thread.interrupted());// false
 
-		Thread.currentThread().interrupt();
+		Thread.currentThread().interrupt();//执行线程interrupt事件
 
 		// isInterrupted不会清除中断状态,检测中断状态（ private native boolean isInterrupted(false);）
 		System.out.println("isInterrupted:" + Thread.currentThread().isInterrupted());
@@ -28,6 +28,7 @@ public class ThreadInterruptFlag extends Thread {
 		// interrupted方法会清除中断状态，检测中断状态（ private native boolean isInterrupted(true);）
 		System.out.println("interrupted:" + Thread.interrupted());// true
 		System.out.println("interrupted:" + Thread.interrupted());// false
+
 
 	}
 

@@ -48,7 +48,7 @@ public class TestLock {
 	
 		lock.lock();
 		try {
-			System.out.println(thread.getName() + "得到了锁");
+			System.out.println(thread.getName() + " get lock");
 //			Thread.sleep(3000);
 			for(int i=0;i<500000000;i++){
 				ArrayList<Integer> list=new ArrayList<>();
@@ -57,7 +57,7 @@ public class TestLock {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			System.out.println(thread.getName() + "释放了锁");
+			System.out.println(thread.getName() + " release lock");
 			lock.unlock();
 		}
 	}

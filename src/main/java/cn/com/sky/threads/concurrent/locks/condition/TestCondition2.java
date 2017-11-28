@@ -1,4 +1,4 @@
-package cn.com.sky.threads.concurrent.locks;
+package cn.com.sky.threads.concurrent.locks.condition;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;

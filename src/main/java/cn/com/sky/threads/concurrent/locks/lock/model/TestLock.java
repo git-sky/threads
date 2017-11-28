@@ -7,9 +7,10 @@ public class TestLock {
 
 	public static void main(String[] args) {
 		Lock lock = new ReentrantLock();
+
 		lock.lock();
 		try {
-			// 处理任务
+			// to do something
 		} catch (Exception ex) {
 
 		} finally {

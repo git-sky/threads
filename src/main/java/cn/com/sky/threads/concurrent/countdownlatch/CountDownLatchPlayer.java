@@ -30,7 +30,7 @@ public class CountDownLatchPlayer {
 		}
 		System.out.println("Race begins!");
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(30000);
 		} catch (InterruptedException e1) {
 			e1.printStackTrace();
 		}

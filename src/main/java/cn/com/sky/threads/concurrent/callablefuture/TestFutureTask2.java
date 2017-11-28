@@ -1,12 +1,6 @@
 package cn.com.sky.threads.concurrent.callablefuture;
 
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executors;
-import java.util.concurrent.FutureTask;
-import java.util.concurrent.SynchronousQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 /**
  * <pre>
@@ -27,7 +21,7 @@ public class TestFutureTask2 {
 		ThreadPoolExecutor executor = new ThreadPoolExecutor(0, Integer.MAX_VALUE, 60L, TimeUnit.SECONDS, new SynchronousQueue<Runnable>());
 
 		TaskCallable task = new TaskCallable();
-		FutureTask<Integer> futureTask = new FutureTask<Integer>(task);
+		FutureTask<Integer> futureTask = new FutureTask<>(task);
 		executor.submit(futureTask);
 //		 executor.execute(futureTask);
 		executor.shutdown();

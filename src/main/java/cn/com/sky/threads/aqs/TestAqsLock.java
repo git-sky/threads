@@ -20,8 +20,10 @@ public class TestAqsLock {
 		lock.isLocked();// 锁是否被占用
 
 		// 独占锁
-		lock.lock();
+		lock.lock();// 锁不可被中断
 		lock.unlock();
+
+
 
 		try {
 			lock.lockInterruptibly();// 锁可以被中断
@@ -36,6 +38,9 @@ public class TestAqsLock {
 			e.printStackTrace();
 		}
 
+
+
+
 		// TODO
 		ConditionObject c = (ConditionObject) lock.newCondition();
 		try {
@@ -44,6 +49,10 @@ public class TestAqsLock {
 			e.printStackTrace();
 		}
 		c.signal();
+
+
+        lock.hasWaiters(c);//是否有线程等待condition
+        lock.getWaitQueueLength(c);//condition中等待线程的个数。
 
 		CountDownLatch cdl = new CountDownLatch(0);
 		try {

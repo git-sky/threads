@@ -2,6 +2,9 @@ package cn.com.sky.threads.concurrent.spinlock;
 
 import java.util.concurrent.atomic.AtomicReference;
 
+/**
+ * CLH lock queue其实就是一个FIFO的队列，队列中的每个结点（线程）只要等待其前继释放锁就可以了。
+ */
 public class CLHLock3 implements SpinLockable{
 
 	private final ThreadLocal<Node> prevLocal;

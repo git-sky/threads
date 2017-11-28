@@ -9,10 +9,10 @@ import java.util.concurrent.locks.LockSupport;
  * 
  * Java锁和同步器框架的核心 AQS:
  * AbstractQueuedSynchronizer，就是通过调用 LockSupport.park()和 LockSupport.unpark()实现线程的阻塞和唤醒的。
- * LockSupport 很类似于二元信号量(只有1个许可证可供使用)，如果这个许可还没有被占用，当前线程获取许可并继 续 执行；如果许可已经被占用，当前线 程阻塞，等待获取许可。
+ * LockSupport 很类似于二元信号量(只有1个许可证可供使用)，如果这个许可还没有被占用，当前线程获取许可并继续执行；如果许可已经被占用，当前线程阻塞，等待获取许可。
  * 
  * 
- * LockSupport是不可重入 的，如果一个线程连续2次调用 LockSupport.park()，那么该线程一定会一直阻塞下去。
+ * LockSupport是不可重入的，如果一个线程连续2次调用 LockSupport.park()，那么该线程一定会一直阻塞下去。
  * 
  */
 public class TestLockSupport {
@@ -21,13 +21,16 @@ public class TestLockSupport {
 //		 LockSupport.park();
 //		 System.out.println("i am blocked...");
 //		
-//		 Thread thread = Thread.currentThread();
-//		 LockSupport.unpark(thread);// 释放许可
-//		 System.out.println("i am unpark...");
+		 Thread thread = Thread.currentThread();
+		 LockSupport.unpark(thread);// 释放许可
+		 System.out.println("i am unpark...");
 //		 LockSupport.unpark(thread);// 释放许可
 //		 System.out.println("i am ok...");
 //		 LockSupport.park(thread);// 获取许可
 //		 System.out.println("i am ok...");
+//
+//        LockSupport.park(thread);// 获取许可
+//        System.out.println("i am ok...");
 
 		try {
 			test();
@@ -64,7 +67,7 @@ public class TestLockSupport {
 
 		t.start();
 
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 
 		// 中断线程
 		t.interrupt();

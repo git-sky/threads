@@ -18,7 +18,7 @@ public class TestFutureTask {
 	public static void main(String args[]) {
 
 		WorkerCallable worker = new WorkerCallable();
-		FutureTask<Integer> ftask = new FutureTask<Integer>(worker);
+		FutureTask<Integer> ftask = new FutureTask<>(worker);
 		new Thread(ftask).start();
 		
 

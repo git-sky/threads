@@ -5,15 +5,14 @@ import java.util.concurrent.locks.LockSupport;
 /**
  * <pre>
  *
- * 方法LockSupport.park阻塞当前线程除非/直到有个LockSupport.unpark方法被调用（unpark方法被提前调用也是可以的）。
- * unpark的调用是没有被计数的，因此在一个park调用前多次调用unpark方法只会解除一个park操作。
+ * park的是当前线程，unpark的是被阻塞的线程。
  */
-public class TestLockSupport3 {
+public class TestLockSupportByBlocker {
     public static void main(String[] args) {
 
         Thread thread = Thread.currentThread();
 
-        Thread t2 = new Thread(new Park2(thread));
+        Thread t2 = new Thread(new ParkB(thread));
         t2.setName("t2");
         t2.start();
 
@@ -23,9 +22,9 @@ public class TestLockSupport3 {
             e.printStackTrace();
         }
 
-//        Thread t1 = new Thread(new Park(thread));
-//        t1.setName("t1");
-//        t1.start();
+        Thread t1 = new Thread(new ParkA(thread, t2));
+        t1.setName("t1");
+        t1.start();
 
 
         try {
@@ -39,36 +38,51 @@ public class TestLockSupport3 {
     }
 }
 
-class Park implements Runnable {
+class ParkA implements Runnable {
 
     private Thread t;
+    private Thread son;
 
-    public Park() {
+    public ParkA() {
     }
 
-    Park(Thread t) {
+    ParkA(Thread t, Thread son) {
         this.t = t;
+        this.son = son;
     }
 
     @Override
     public void run() {
         System.out.println("run before...........");
-        LockSupport.unpark(t);
-        LockSupport.unpark(t);
-        LockSupport.unpark(t);
+//        LockSupport.unpark(t);
+//        LockSupport.unpark(t);
+//        LockSupport.unpark(t);
+        System.out.println("blocker："+LockSupport.getBlocker(son));
+        LockSupport.unpark(son);
+        System.out.println("blocker："+LockSupport.getBlocker(son));
+
+        try {
+            Thread.sleep(3000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        LockSupport.unpark(son);
+        LockSupport.unpark(son);
+
         System.out.println("run after...........");
     }
 
 }
 
-class Park2 implements Runnable {
+class ParkB implements Runnable {
 
     private Thread t;
 
-    public Park2() {
+    public ParkB() {
     }
 
-    Park2(Thread t) {
+    ParkB(Thread t) {
         this.t = t;
     }
 
@@ -76,7 +90,9 @@ class Park2 implements Runnable {
     public void run() {
         System.out.println("park2 run before...........");
 
+//       parkBlocker是用于记录线程是被谁阻塞的。可以通过LockSupport的getBlocker获取到阻塞的对象。用于监控和分析线程用的。
         LockSupport.park(t);//阻塞当前线程，不是阻塞t线程。
+
         System.out.println("first i waked up...");
 
         LockSupport.park(t);

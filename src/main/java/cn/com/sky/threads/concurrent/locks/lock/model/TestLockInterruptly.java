@@ -21,6 +21,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * 
  * 简而言之：
  * 等待锁时，lockInterruptibly可以响应中断，synchronized不能响应中断。
+ *
  * 获得锁之后，都不能响应中断 。
  * 
  */
@@ -32,8 +33,10 @@ public class TestLockInterruptly {
 
 	public void method() throws InterruptedException {
 		Lock lock = new ReentrantLock();
+
 		lock.lockInterruptibly();
 		try {
+		    //to do something
 		} finally {
 			lock.unlock();
 		}

@@ -9,11 +9,11 @@ public class ThreadException extends Thread {
 		while (true) {
 			System.out.println("i am running.........");
 			int zero = 0;
-			// try {
+			 try {
 			int a = 10 / zero;
-			// } catch (Exception e) {
-			//
-			// }
+			 } catch (Exception e) {
+
+			 }
 			System.out.println("i am ok....");
 		}
 	}

@@ -21,7 +21,7 @@ public class ThreadInterrupt extends Thread {
 		t.start();
 		System.out.println("在按任意键中断线程!");
 		System.in.read();
-		t.interrupt();
+		t.interrupt();//执行线程interrupt事件
 		t.join();
 		System.out.println("线程已经退出!");
 	}

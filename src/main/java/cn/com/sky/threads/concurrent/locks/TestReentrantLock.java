@@ -18,13 +18,13 @@ import java.util.concurrent.locks.ReentrantLock;
  * 
  * 
  * synchronized局限：
- * 1.不能中断一个正在试图获得锁的线程。
- * 2.试图获得锁时不能设定超时。
- * 3.每个锁只有一个条件，有时候是不够的。
+ * 1.中断问题：不能中断一个正在试图获得锁的线程。
+ * 2.超时问题：试图获得锁时不能设定超时。
+ * 3.条件变量：每个锁只有一个条件，有时候是不够的。
  * 
  * 
  * 
- * 除了synchronized的功能,多了三个高级功能.
+ * ReentrantLock类除了synchronized的功能,多了三个高级功能.
  * 
  * 等待可中断,公平锁,绑定多个Condition.
  * 
@@ -57,12 +57,13 @@ import java.util.concurrent.locks.ReentrantLock;
  * </pre>
  * 
  */
-public class TestThreadLock {
+public class TestReentrantLock {
 	public static void main(String[] args) {
 		// 创建并发访问的账户
 		MyCountCard myCount = new MyCountCard("95599200901215522", 10000);
 		// 创建一个锁对象
 		Lock lock = new ReentrantLock();
+
 		// 创建一个线程池
 		ExecutorService pool = Executors.newCachedThreadPool();
 		// 创建一些并发访问用户，一个信用卡，存的存，取的取，好热闹啊

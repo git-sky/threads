@@ -7,7 +7,9 @@ import java.util.concurrent.Executors;
 /**
  * CountDownLatch:闭锁,减法器
  * 
- * AQS实现，await线程入队列，countDown唤醒后继线程。
+ * 组合AQS实现
+ * await时，如果state不为0，则线程入队列。
+ * countDown时，执行state-1操作，当state为0时，唤醒后继线程。
  */
 public class TestCountDownLatch {
 	public static void main(String[] args) throws InterruptedException {
@@ -23,7 +25,7 @@ public class TestCountDownLatch {
 			Runnable run = new Runnable() {
 				public void run() {
 					try {
-						begin.await();// 一直阻塞
+						begin.await();// 当state不为0时，阻塞
 						Thread.sleep((long) (Math.random() * 10000));
 						System.out.println("No." + NO + " arrived");
 					} catch (InterruptedException e) {
