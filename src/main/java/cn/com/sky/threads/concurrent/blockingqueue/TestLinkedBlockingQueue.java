@@ -19,7 +19,7 @@ public class TestLinkedBlockingQueue {
 
 	public static void main(String args[]) {
 
-		LinkedBlockingQueue<Integer> queue = new LinkedBlockingQueue<Integer>();
+		LinkedBlockingQueue<Integer> queue = new LinkedBlockingQueue<>();
 
 		for (int e = 0; e < 30; e++) {
 			queue.add(e);

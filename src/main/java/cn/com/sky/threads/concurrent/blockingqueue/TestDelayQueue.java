@@ -31,7 +31,6 @@ class Student implements Runnable, Delayed {
 	private long workTime;// 考试时间（做题的时间）
 
 	public Student() {
-
 	}
 
 	public Student(String name, long submitTime) {
@@ -68,13 +67,15 @@ class Student implements Runnable, Delayed {
 
 		@Override
 		public void run() {
-			exec.shutdownNow();
+            System.out.println("考试时间到！关闭线程池！");
+            exec.shutdownNow();//使用此方法中断线程。
 		}
 	}
 
 }
 
 class Teacher implements Runnable {
+
 	private DelayQueue<Student> students;
 
 	// private ExecutorService exec;
@@ -96,23 +97,25 @@ class Teacher implements Runnable {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 }
 
 public class TestDelayQueue {
-	static final int STUDENT_SIZE = 45;
+
+	private static final int STUDENT_SIZE = 45;
 
 	public static void main(String[] args) {
 		Random r = new Random();
-		DelayQueue<Student> students = new DelayQueue<Student>();
+		DelayQueue<Student> studentDelayQueue = new DelayQueue<>();
+
 		ExecutorService exec = Executors.newCachedThreadPool();
 		for (int i = 0; i < STUDENT_SIZE; i++) {
-			students.put(new Student("学生" + (i + 1), 3000 + r.nextInt(9000)));
+			studentDelayQueue.put(new Student("学生" + (i + 1), 3000 + r.nextInt(9000)));
 		}
-		students.put(new Student.EndExam(12000, exec));// 1200为考试结束时间
-		exec.execute(new Teacher(students, exec));
+		studentDelayQueue.put(new Student.EndExam(12000, exec));// 1200为考试结束时间
+
+		exec.execute(new Teacher(studentDelayQueue, exec));
 
 	}
 

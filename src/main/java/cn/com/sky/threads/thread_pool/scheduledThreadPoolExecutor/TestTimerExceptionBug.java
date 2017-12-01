@@ -1,7 +1,5 @@
-package cn.com.sky.threads.concurrent.timer;
+package cn.com.sky.threads.thread_pool.scheduledThreadPoolExecutor;
 
-import java.util.Date;
-import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -44,9 +42,9 @@ public class TestTimerExceptionBug {
 		};
 
 		// 由于任务1抛出异常，任务2也停止运行了
-		Timer timer = new Timer();
-		timer.schedule(task1, 100);
-		timer.scheduleAtFixedRate(task2, new Date(), 1000);
+//		Timer timer = new Timer();
+//		timer.schedule(task1, 100);
+//		timer.scheduleAtFixedRate(task2, new Date(), 1000);
 
 		// task2继续运行不受影响
 		ScheduledExecutorService pool = Executors.newScheduledThreadPool(1);

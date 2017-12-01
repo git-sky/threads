@@ -22,6 +22,11 @@ import java.util.concurrent.Future;
 public class TestCompletionServiceDemo {
 	private static ExecutorService pool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() * 5);
 
+    public static void main(String[] args) {
+        UseCommonCal();
+        UseComletionService();
+    }
+
 	public static void UseCommonCal() {
 		long beginTime = System.currentTimeMillis();
 		long sum = 0L;
@@ -72,8 +77,5 @@ public class TestCompletionServiceDemo {
 		pool.shutdown();
 	}
 
-	public static void main(String[] args) {
-		UseCommonCal();
-		UseComletionService();
-	}
+
 }

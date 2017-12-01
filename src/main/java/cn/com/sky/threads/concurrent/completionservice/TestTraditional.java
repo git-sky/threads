@@ -2,12 +2,7 @@ package cn.com.sky.threads.concurrent.completionservice;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
+import java.util.concurrent.*;
 
 /**
  * <pre>
@@ -80,5 +75,28 @@ public class TestTraditional {
 		System.out.println("all over.");
 		executor.shutdown();
 	}
+
+    private static class ReturnAfterSleepCallable implements Callable<Integer> {
+
+        private int sleepSeconds;
+        private int returnValue;
+
+        public ReturnAfterSleepCallable(int sleepSeconds, int returnValue) {
+            this.sleepSeconds = sleepSeconds;
+            this.returnValue = returnValue;
+        }
+
+        @Override
+        public Integer call() throws Exception {
+            System.out.println("begin to execute.");
+
+            TimeUnit.SECONDS.sleep(sleepSeconds);
+
+            System.out.println("end to execute.");
+
+            return returnValue;
+        }
+    }
+
 
 }

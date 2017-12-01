@@ -24,9 +24,10 @@ public class TestPriorityBlockingQueue {
 
 	public static void main(String args[]) {
 		ExecutorService exec = Executors.newCachedThreadPool();
-		PriorityBlockingQueue<Runnable> queue = new PriorityBlockingQueue<Runnable>();
+		PriorityBlockingQueue<Runnable> queue = new PriorityBlockingQueue<>();
 
 		exec.execute(new PrioritizedTaskProducer(queue, exec));
+
 		try {
 			TimeUnit.MILLISECONDS.sleep(250);
 		} catch (InterruptedException e) {
@@ -41,7 +42,7 @@ class PrioritizedTask implements Runnable, Comparable<PrioritizedTask> {
 	private final int id = counter++;
 	private final int priority;
 
-	protected static List<PrioritizedTask> sequence = new ArrayList<PrioritizedTask>();
+	protected static List<PrioritizedTask> sequence = new ArrayList<>();
 
 	public PrioritizedTask(int priority) {
 		this.priority = priority;

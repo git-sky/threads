@@ -7,13 +7,13 @@ public class TestAtomicLongArray {
 	
 	static long[] value = new long[] { 1, 2 };
 
-	static AtomicLongArray ai = new AtomicLongArray(value);
+	static AtomicLongArray array = new AtomicLongArray(value);
 
 	public static void main(String[] args) {
 
-		ai.getAndSet(0, 3);
+		array.getAndSet(0, 3);
 
-		System.out.println(ai.get(0));
+		System.out.println(array.get(0));
 
 		System.out.println(value[0]);
 

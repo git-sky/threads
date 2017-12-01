@@ -1,7 +1,6 @@
 package cn.com.sky.threads.concurrent.blockingqueue;
 
 import java.util.concurrent.LinkedTransferQueue;
-import java.util.concurrent.TransferQueue;
 
 /**
  * <pre>
@@ -28,13 +27,21 @@ public class TestLinkedTransferQueue {
 
 	public static void main(String[] args) {
 
-		LinkedTransferQueue<String> queue = new LinkedTransferQueue<String>();
+		LinkedTransferQueue<String> queue = new LinkedTransferQueue<>();
 
 		try {
 			queue.transfer("element");
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-	}
+
+        try {
+            queue.add(new String());
+
+            queue.take();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

@@ -31,18 +31,19 @@ public class TestAtomicIntegerFieldUpdater {
 	class Data {
 		public volatile int value1 = 1;
 		volatile int value2 = 2;
-//		protected volatile int value3 = 3;
-//		private volatile int value4 = 4;
+		protected volatile int value3 = 3;
+		private volatile int value4 = 4;
 	}
 
 	AtomicIntegerFieldUpdater<Data> getUpdater(String fieldName) {
 		return AtomicIntegerFieldUpdater.newUpdater(Data.class, fieldName);
 	}
 
-	// value3/value4对于AtomicIntegerFieldUpdaterDemo类是不可见的，因此通过反射是不能直接修改其值的。
+	// value3/value4对于AtomicIntegerFieldUpdater类是不可见的，因此通过反射是不能直接修改其值的。
 	void doit() {
 		Data data = new Data();
-		System.out.println("1 ==> " + getUpdater("value1").getAndSet(data, 10));
+        System.out.println(data.value4);
+        System.out.println("1 ==> " + getUpdater("value1").getAndSet(data, 10));
 		System.out.println("3 ==> " + getUpdater("value2").incrementAndGet(data));
 //		System.out.println("2 ==> " + getUpdater("value3").decrementAndGet(data));
 //		System.out.println("true ==> " + getUpdater("value4").compareAndSet(data, 4, 5));

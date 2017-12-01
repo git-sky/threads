@@ -17,18 +17,25 @@ import java.util.concurrent.ArrayBlockingQueue;
  */
 public class TestArrayBlockingQueue {
 	public static void main(String[] args) {
-		ArrayBlockingQueue<Integer> bqueue = new ArrayBlockingQueue<Integer>(20);
+		ArrayBlockingQueue<Integer> bqueue = new ArrayBlockingQueue<>(20);
 		for (int i = 0; i < 30; i++) {
 			// 将指定元素添加到此队列中，如果没有可用空间，将一直等待（如果有必要）。
 			try {
-				bqueue.put(i);
+				bqueue.put(i);//阻塞等待,可中断
+                bqueue.take();//阻塞获取,可中断
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			bqueue.add(i);
-			bqueue.offer(i);
-			System.out.println("向阻塞队列中添加了元素:" + i);
+            System.out.println("put over ...");
+
+            bqueue.add(i);
+            System.out.println("add over ...");
+
+            bqueue.offer(i);
+            System.out.println("offer over ...");
+
+            System.out.println("向阻塞队列中添加了元素:" + i);
 		}
-		System.out.println("程序到此运行结束......");
+		System.out.println("over...");
 	}
 }

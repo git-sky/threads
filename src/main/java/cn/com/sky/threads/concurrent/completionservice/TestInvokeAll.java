@@ -32,9 +32,10 @@ public class TestInvokeAll {
 				@Override
 				public Integer call() throws Exception {
 					int ran = new Random().nextInt(1000);
-					Thread.sleep(ran);
-					System.out.println(Thread.currentThread().getName() + " 休息时间: " + ran);
-					return ran;
+                    System.out.println(Thread.currentThread()+",ran:" + ran);
+                    Thread.sleep(ran);
+                    System.out.println(Thread.currentThread().getName() + " sleep: " + ran);
+                    return ran;
 				}
 			};
 
@@ -45,7 +46,7 @@ public class TestInvokeAll {
 
 		List<Future<Integer>> results = exec.invokeAll(tasks);
 
-		System.out.println("执行任务消耗了 ：" + (System.currentTimeMillis() - s) + "毫秒");
+        System.out.println("invokeAll: " + (System.currentTimeMillis() - s) + " ms");
 
 		for (int i = 0; i < results.size(); i++) {
 			try {

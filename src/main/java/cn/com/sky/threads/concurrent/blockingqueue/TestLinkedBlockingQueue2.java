@@ -8,7 +8,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class TestLinkedBlockingQueue2 extends Thread {
 	
-	public static BlockingQueue<String> queue = new LinkedBlockingQueue<String>(3);
+	public static BlockingQueue<String> queue = new LinkedBlockingQueue<>(3);
 	
 	private int index;
 

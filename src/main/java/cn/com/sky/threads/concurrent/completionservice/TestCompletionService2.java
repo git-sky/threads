@@ -18,6 +18,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class TestCompletionService2 {
 	public static void main(String[] args) {
+
 		int taskSize = 5;
 
 		ExecutorService executor = Executors.newFixedThreadPool(taskSize);
@@ -51,26 +52,29 @@ public class TestCompletionService2 {
 		System.out.println("all over.");
 		executor.shutdown();
 	}
+
+    private static class ReturnAfterSleepCallable implements Callable<Integer> {
+
+        private int sleepSeconds;
+        private int returnValue;
+
+        public ReturnAfterSleepCallable(int sleepSeconds, int returnValue) {
+            this.sleepSeconds = sleepSeconds;
+            this.returnValue = returnValue;
+        }
+
+        @Override
+        public Integer call() throws Exception {
+            System.out.println("begin to execute.");
+
+            TimeUnit.SECONDS.sleep(sleepSeconds);
+
+            System.out.println("end to execute.");
+
+            return returnValue;
+        }
+    }
+
+
 }
 
-class ReturnAfterSleepCallable implements Callable<Integer> {
-
-	private int sleepSeconds;
-	private int returnValue;
-
-	public ReturnAfterSleepCallable(int sleepSeconds, int returnValue) {
-		this.sleepSeconds = sleepSeconds;
-		this.returnValue = returnValue;
-	}
-
-	@Override
-	public Integer call() throws Exception {
-		System.out.println("begin to execute.");
-
-		TimeUnit.SECONDS.sleep(sleepSeconds);
-
-		System.out.println("end to execute.");
-
-		return returnValue;
-	}
-}

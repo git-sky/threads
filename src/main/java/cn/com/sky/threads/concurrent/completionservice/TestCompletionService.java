@@ -1,14 +1,7 @@
 package cn.com.sky.threads.concurrent.completionservice;
 
 import java.util.Random;
-import java.util.concurrent.Callable;
-import java.util.concurrent.CompletionService;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorCompletionService;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 /**
  * <pre>
@@ -54,15 +47,16 @@ public class TestCompletionService {
 		}
 
 	}
+
+	private static  class Task implements Callable<Integer> {
+
+        @Override
+        public Integer call() throws Exception {
+            Random rand = new Random();
+            TimeUnit.SECONDS.sleep(rand.nextInt(7));
+            return rand.nextInt();
+        }
+
+    }
 }
 
-class Task implements Callable<Integer> {
-
-	@Override
-	public Integer call() throws Exception {
-		Random rand = new Random();
-		TimeUnit.SECONDS.sleep(rand.nextInt(7));
-		return rand.nextInt();
-	}
-
-}
