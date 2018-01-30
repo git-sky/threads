@@ -27,8 +27,9 @@ package cn.com.sky.threads.thread.synchronize.threelock;
 public class ObjectLock {
 	public static void main(String[] args) {
 		// System.out.println("start time = " + System.currentTimeMillis()+"ms");
-		LockTestClass test = new LockTestClass();
+//		LockTestClass test = new LockTestClass();
 		for (int i = 0; i < 5; i++) {
+            LockTestClass test = new LockTestClass();
 			Thread thread = new ObjThread(test, i);
 			thread.start();
 		}

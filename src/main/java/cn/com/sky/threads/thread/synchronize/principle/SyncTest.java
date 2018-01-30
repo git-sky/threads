@@ -21,7 +21,7 @@ package cn.com.sky.threads.thread.synchronize.principle;
  * 
  * 在修饰方法的时候默认是当前对象作为锁的对象.
  * 
- * 在修饰类时候默认是当前类的Class对象作为锁的对f象.
+ * 在修饰类时候默认是当前类的Class对象作为锁的对象.
  * 
  * synchronized会在进入同步块的前后分别形成monitorenter和monitorexit字节码指令。
  * 在执行monitorenter指令时会尝试获取对象的锁,如果此对象没有被锁,或者此对象已经被当前线程锁住,那么锁的计数器加一,
@@ -47,7 +47,7 @@ public class SyncTest {
 	}
 
 	public void testSyncThis() {
-		synchronized (this) {
+		synchronized (this) {//this指执行当前方法的实例对象,不是执行当前方法的线程。
 			try {
 				System.out.println("test sync this start");
 				Thread.sleep(5000);
@@ -79,7 +79,7 @@ public class SyncTest {
 	public static void main(String[] args) {
 
 		final SyncTest testSync = new SyncTest();
-		// testSync.syncVar = new SyncTest();
+//		 testSync.syncVar = new SyncTest();
 		testSync.syncVar = testSync;// syncVar成员变量，指向了和this相同的区域。因此，在sychronized(this)和synchronized(syncVar)就形成了竞争，使得后者被阻塞。
 
 		Thread threadOne = new Thread(new Runnable() {

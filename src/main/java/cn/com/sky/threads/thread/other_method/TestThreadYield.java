@@ -35,23 +35,34 @@ class TestThreadMethod extends Thread {
 		System.out.println(Thread.currentThread().getName());
 
 		while (true) {
-			// Thread.yield();
-			seqNum.set(seqNum.get() + 1);
-			System.out.println(Thread.currentThread().getName() + ";seqNum:" + seqNum.get());
+            System.out.println("yield before :"+Thread.currentThread().getName() + ";seqNum:" + seqNum.get());
+            Thread.yield();
+            System.out.println("yield after :"+Thread.currentThread().getName() + ";seqNum:" + seqNum.get());
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            seqNum.set(seqNum.get() + 1);
+//			System.out.println(Thread.currentThread().getName() + ";seqNum:" + seqNum.get());
 
 		}
 	}
 }
 
 public class TestThreadYield {
+
 	public static void main(String[] args) {
 		System.out.println(Runtime.getRuntime().availableProcessors());
 
 		List<Thread> highThreads = new ArrayList<>();
 		List<Thread> lowThreads = new ArrayList<>();
+
 		TestThreadMethod t = new TestThreadMethod();
 
-		for (int i = 0; i < 10; i++) {
+		int N=2;
+
+		for (int i = 0; i < N; i++) {
 			Thread highThread = new Thread(t, "High Thread-" + i);
 			highThread.setPriority(Thread.MAX_PRIORITY);
 			highThreads.add(highThread);
@@ -61,14 +72,13 @@ public class TestThreadYield {
 			thread.start();
 		}
 
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			Thread.sleep(1000);
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < N; i++) {
 			Thread lowThread = new Thread(t, "Low Thread-" + i);
 			lowThread.setPriority(Thread.MIN_PRIORITY);
 			lowThreads.add(lowThread);

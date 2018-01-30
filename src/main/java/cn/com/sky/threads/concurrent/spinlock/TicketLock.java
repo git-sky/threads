@@ -32,18 +32,22 @@ public class TicketLock implements SpinLockable {
 
 	private AtomicInteger serviceNum = new AtomicInteger();// 服务号
 	private AtomicInteger ticketNum = new AtomicInteger();// 排队号
-
-	private static final ThreadLocal<Integer> LOCAL = new ThreadLocal<Integer>();
+	private static final ThreadLocal<Integer> LOCAL = new ThreadLocal<>();
 
 	public void lock() {
+        // 首先原子性地获得一个排队号
 		int myticket = ticketNum.getAndIncrement();
+
 		LOCAL.set(myticket);
+
+        // 只要当前服务号不是自己的就不断轮询
 		while (myticket != serviceNum.get()) {
 		}
 
 	}
 
 	public void unlock() {
+        // 只有当前线程拥有者才能释放锁
 		int myticket = LOCAL.get();
 		serviceNum.compareAndSet(myticket, myticket + 1);
 	}

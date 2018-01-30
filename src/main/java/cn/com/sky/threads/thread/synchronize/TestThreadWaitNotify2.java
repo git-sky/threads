@@ -70,19 +70,19 @@ public class TestThreadWaitNotify2 {
 			}).start();
 		}
 
-		// try {
-		// Thread.sleep(1000);
-		// } catch (InterruptedException e) {
-		// e.printStackTrace();
-		// }
+		 try {
+		 Thread.sleep(1000);
+		 } catch (InterruptedException e) {
+		 e.printStackTrace();
+		 }
 		//
-		// notify()方法能够唤醒一个正在等待该对象的monitor的线程。具体唤醒哪个线程是随机的。
-		// nofityAll()方法能够唤醒所有正在等待该对象的monitor的线程。
-		// synchronized (obj) {
-		// System.out.println("before nofity..............");
-		// // obj.notify();// 只能随机唤醒一个线程，唤醒的线程执行完后，没有唤醒的都会继续阻塞。 所以程序不会结束。
-		// obj.notifyAll();// 唤醒所有的线程，所有的线程都会执行完毕。所以程序会结束。
-		// System.out.println("after notify..........");
-		// }
-	}
+		// notify()方法能够唤醒一个正在等待该对象的monitor的线程。具体唤醒哪个线程是随机的。从前面唤醒。
+		// nofityAll()方法能够唤醒所有正在等待该对象的monitor的线程。从后向前唤醒。
+        synchronized (obj) {
+            System.out.println("before nofity..............");
+             obj.notify();// 只能随机唤醒一个线程，唤醒的线程执行完后，没有唤醒的都会继续阻塞。 所以程序不会结束。
+//            obj.notifyAll();// 唤醒所有的线程，所有的线程都会执行完毕。所以程序会结束。
+            System.out.println("after notify..........");
+        }
+    }
 }

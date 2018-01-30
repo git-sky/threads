@@ -4,6 +4,7 @@ package cn.com.sky.threads.thread.producer_consumer;
  * notify导致死锁
  */
 public class TestDeadLockByNotify {
+
 	public static void main(String[] args) {
 
 		Goods goods = new Goods(1, 0);

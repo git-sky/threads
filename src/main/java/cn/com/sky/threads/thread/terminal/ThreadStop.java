@@ -13,7 +13,7 @@ public class ThreadStop extends Thread {
 
 	public void run() {
 		while (true) {
-			System.out.println("i am running.........");
+			System.out.println("i am running...");
 		}
 	}
 
@@ -21,7 +21,7 @@ public class ThreadStop extends Thread {
 	public static void main(String[] args) throws Exception {
 		ThreadStop thread = new ThreadStop();
 		thread.start();
-		sleep(5000); // 主线程延迟5秒
+		sleep(2000); // 主线程延迟5秒
 		thread.stop();
 		thread.join();
 		System.out.println("main线程退出!");

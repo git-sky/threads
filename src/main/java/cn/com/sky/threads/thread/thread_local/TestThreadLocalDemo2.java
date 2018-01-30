@@ -8,13 +8,15 @@ public class TestThreadLocalDemo2 implements Runnable {
 	// 创建线程局部变量studentLocal，在后面你会发现用来保存Student对象
 	private final static ThreadLocal<Student2> studentLocal = new ThreadLocal<Student2>() {
 		@Override
-		protected Student2 initialValue() {
+		protected Student2 initialValue() {//每个线程的get方法第一次都要执行这个方法
 
 			Student2 student = new Student2();
 			School2 s = new School2();
 			s.setName("beijing");
 			student.setSchool(s);
 			student.setAge(12);
+
+            System.out.println("initialValue:"+student);
 
 			return student;
 		}
@@ -45,6 +47,7 @@ public class TestThreadLocalDemo2 implements Runnable {
 		System.out.println("thread " + currentThreadName + " first read age is:" + student.getAge() + " school:" + student.getSchool().getName());
 		student.getSchool().setName("qinghua:" + age);
 		student.setAge(age);
+		studentLocal.set(student);
 		System.out.println("thread " + currentThreadName + " first read age is:" + student.getAge() + " school:" + student.getSchool().getName());
 		try {
 			Thread.sleep(500);

@@ -1,6 +1,6 @@
 package cn.com.sky.threads.thread.terminal.interrupt;
 
-import cn.com.sky.threads.concurrent.countdownlatch.Player;
+import cn.com.sky.threads.concurrent.tools.countdownlatch.Player;
 
 /**
  * 2、Performing task-specific cleanup before rethrowing InterruptedException

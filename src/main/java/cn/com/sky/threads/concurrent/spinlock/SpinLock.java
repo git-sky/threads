@@ -23,6 +23,8 @@ import java.util.concurrent.atomic.AtomicReference;
  * 该自旋锁不可重入。
  * 非公平锁。
  *
+ * 不可重入非公平锁。
+ *
  */
 public class SpinLock implements SpinLockable {
 
@@ -30,12 +32,14 @@ public class SpinLock implements SpinLockable {
 
 	public void lock() {
 		Thread current = Thread.currentThread();
+        // 如果锁未被占用，则设置当前线程为锁的拥有者
 		while (!owner.compareAndSet(null, current)) {
 		}
 	}
 
 	public void unlock() {
 		Thread current = Thread.currentThread();
+        // 只有锁的拥有者才能释放锁
 		owner.compareAndSet(current, null);
 	}
 }

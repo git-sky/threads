@@ -13,13 +13,13 @@ package cn.com.sky.threads.thread.synchronize;
 public class TestThreadSyncInMethod {
 
 	public static void main(String[] args) {
-		UserB u = new UserB("张三", 100);
-		MyThreadB t1 = new MyThreadB("线程A", u, 20);
-		MyThreadB t2 = new MyThreadB("线程B", u, -60);
-		MyThreadB t3 = new MyThreadB("线程C", u, -80);
-		MyThreadB t4 = new MyThreadB("线程D", u, -30);
-		MyThreadB t5 = new MyThreadB("线程E", u, 32);
-		MyThreadB t6 = new MyThreadB("线程F", u, 21);
+		UserB user = new UserB("张三", 100);
+		MyThreadB t1 = new MyThreadB("线程A", user, 20);
+		MyThreadB t2 = new MyThreadB("线程B", user, -60);
+		MyThreadB t3 = new MyThreadB("线程C", user, -80);
+		MyThreadB t4 = new MyThreadB("线程D", user, -30);
+		MyThreadB t5 = new MyThreadB("线程E", user, 32);
+		MyThreadB t6 = new MyThreadB("线程F", user, 21);
 
 		t1.start();
 		t2.start();

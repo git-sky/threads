@@ -32,7 +32,7 @@ class ThreadAA extends Thread {
 				if (i == 50) {
 					try {
 						// 当前线程等待
-						oa.wait();// Thread.currentThread().wait();//错误
+                        oa.wait();// Thread.currentThread().wait();//错误
 						System.out.println("ThreadAA继续执行..................");
 					} catch (InterruptedException e) {
 						e.printStackTrace();

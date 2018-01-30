@@ -1,6 +1,5 @@
 package cn.com.sky.threads.concurrent.skiplist;
 
-import java.util.Map;
 import java.util.concurrent.ConcurrentSkipListMap;
 
 /**
@@ -26,12 +25,13 @@ public class TestConcurrentSkipListMap {
 		map.put(23, "23");
 		map.put(3, "3");
 		map.put(2, "2");
+        map.put(33, "2");
 
 		/*
 		 * 输出是有序的，从小到大。 output 1 2 3 23
 		 */
 		for (Integer key : map.keySet()) {
-			System.out.println(map.get(key));
+			System.out.println(key+"->"+map.get(key));
 		}
 	}
 }

@@ -11,7 +11,7 @@ public class ObjThread extends Thread {
 
 	public void run() {
 		// 无锁方法
-		// lock.noSynMethod(this.getId(),this);
+//		 lock.noSynMethod(this.getId(),this);//this是ObjThread对象
 		// 对象锁方法1, 采用在方法上加锁方式
 //		lock.synOnMethod();
 		// 对象锁方法2，采用synchronized(this)的方式
@@ -21,7 +21,7 @@ public class ObjThread extends Thread {
 		// 类锁方法，采用static synchronized increment的方式
 //		 LockTestClass.increment();
 //		 lock.increment2();
-//		 lock.increment3();
+		 lock.increment3();
 	}
 
 }

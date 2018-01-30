@@ -40,7 +40,7 @@ public class TestUnsafe2 {
 	public static void main(String[] args) throws Exception {
 
 		Class clazz = Target.class;
-		Field[] fields = clazz.getDeclaredFields();
+		Field[] fields = clazz.getDeclaredFields();//当前类声明的所有字段
 
 		System.out.println("fieldName:fieldOffset");
 
@@ -59,7 +59,7 @@ public class TestUnsafe2 {
 		// intParam的字段偏移是12 原始值是3 我们要改为10
 
 		// 在obj的offset位置比较integer field和期望的值，如果相同则更新。
-		// unsafe.compareAndSwapInt(o, offset, expected, x);
+		// unsafe.compareAndSwapInt(obj, offset, expected, x);
 
 		System.out.println(unsafe.compareAndSwapInt(target, 12, 3, 10));
 		int b = (Integer) intFiled.get(target);
@@ -70,22 +70,24 @@ public class TestUnsafe2 {
 
         /**
          * compareAndSwapObject(Object var1, long var2, Object var3, Object var4)
-         * var1 操作的对象
-         * var2 操作的对象属性
-         * var3 var2与var3比较，相等才更新
+         * var1 操作的对象obj
+         * var2 操作的对象属性的偏移量 24
+         * var3 var2位置的对象与var3比较，相等才更新
          * var4 更新值
          */
-		System.out.println(unsafe.compareAndSwapObject(target, 24, null, "5"));
+		System.out.println(unsafe.compareAndSwapObject(target, 24, null, "abc"));
 
 		Field strParamField = clazz.getDeclaredField("strParam");
 		String s = (String) strParamField.get(target);
 		System.out.println(s);
 	}
+
+   static class Target {
+        int intParam = 3;
+        long longParam;
+        String strParam;
+        String strParam2;
+    }
 }
 
-class Target {
-	int intParam = 3;
-	long longParam;
-	String strParam;
-	String strParam2;
-}
+

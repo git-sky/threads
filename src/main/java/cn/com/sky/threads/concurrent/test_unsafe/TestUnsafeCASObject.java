@@ -33,15 +33,15 @@ public class TestUnsafeCASObject {
             /**
              * compareAndSwapObject(Object var1, long var2, Object var3, Object var4)
              * var1 操作的对象
-             * var2 操作的对象属性
-             * var3 var2与var3比较，相等才更新
+             * var2 操作的对象属性的偏移量
+             * var3 var2位置的对象与var3比较，相等才更新
              * var4 更新值
              */
             return UNSAFE.compareAndSwapObject(this, nextOffset, cmp, val);
         }
 
         private static final sun.misc.Unsafe UNSAFE;
-        private static final long nextOffset;
+        private static final long nextOffset;//next属性的偏移地址。
 
         static {
             try {
@@ -56,7 +56,7 @@ public class TestUnsafeCASObject {
 
         /**
          * 获取Unsafe的方法
-         * 获取了以后就可以愉快的使用CAS啦
+         * 获取了以后就可以使用CAS啦
          *
          * @return
          */
