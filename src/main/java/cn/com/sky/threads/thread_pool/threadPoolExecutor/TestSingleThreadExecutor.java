@@ -2,7 +2,6 @@ package cn.com.sky.threads.thread_pool.threadPoolExecutor;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * <pre>
@@ -47,20 +46,20 @@ public class TestSingleThreadExecutor extends Thread {
 	public static void main(String args[]) {
 		ExecutorService fixedThreadPool = Executors.newFixedThreadPool(1);
 
-		for (int i = 0; i < 20; i++) {
+		for (int i = 0; i < 1; i++) {
 			fixedThreadPool.execute(new TestSingleThreadExecutor(i));
 		}
 
 		// it's not a single thread pool any more,it will reconfigure the existing one to allow more
 		// than one thread.
-		((ThreadPoolExecutor) fixedThreadPool).setCorePoolSize(10);
-		((ThreadPoolExecutor) fixedThreadPool).setMaximumPoolSize(10);
-
-		System.out.println("submit finish");
-		fixedThreadPool.shutdown();
-
-		ExecutorService single = Executors.newSingleThreadExecutor();
-		((ThreadPoolExecutor) single).setCorePoolSize(10);// 类转换错误
+//		((ThreadPoolExecutor) fixedThreadPool).setCorePoolSize(10);
+//		((ThreadPoolExecutor) fixedThreadPool).setMaximumPoolSize(10);
+//
+//		System.out.println("submit finish");
+//		fixedThreadPool.shutdown();
+//
+//		ExecutorService single = Executors.newSingleThreadExecutor();
+//		((ThreadPoolExecutor) single).setCorePoolSize(10);// 类转换错误
 	}
 
 }

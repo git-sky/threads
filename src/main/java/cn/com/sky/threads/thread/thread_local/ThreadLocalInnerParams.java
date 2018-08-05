@@ -5,7 +5,7 @@ package cn.com.sky.threads.thread.thread_local;
  */
 public class ThreadLocalInnerParams {
 
-	public static ThreadLocal<Integer> threadLocal = new ThreadLocal<Integer>();
+	public static ThreadLocal<Integer> threadLocal = new ThreadLocal<>();
 
 	public static void main(String[] args) throws InterruptedException {
 		threadLocal.set(1);

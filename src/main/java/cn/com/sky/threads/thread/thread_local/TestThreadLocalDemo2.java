@@ -16,7 +16,9 @@ public class TestThreadLocalDemo2 implements Runnable {
 			student.setSchool(s);
 			student.setAge(12);
 
-            System.out.println("initialValue:"+student);
+            System.out.println("initialValue: "+student);
+			System.out.println("initialValue: "+s);
+
 
 			return student;
 		}
@@ -48,13 +50,13 @@ public class TestThreadLocalDemo2 implements Runnable {
 		student.getSchool().setName("qinghua:" + age);
 		student.setAge(age);
 		studentLocal.set(student);
-		System.out.println("thread " + currentThreadName + " first read age is:" + student.getAge() + " school:" + student.getSchool().getName());
+		System.out.println("thread " + currentThreadName + " second read age is:" + student.getAge() + " school:" + student.getSchool().getName());
 		try {
 			Thread.sleep(500);
 		} catch (InterruptedException ex) {
 			ex.printStackTrace();
 		}
-		System.out.println("thread " + currentThreadName + " second read age is:" + student.getAge() + " school:" + student.getSchool().getName());
+		System.out.println("thread " + currentThreadName + " third read age is:" + student.getAge() + " school:" + student.getSchool().getName());
 	}
 
 }
