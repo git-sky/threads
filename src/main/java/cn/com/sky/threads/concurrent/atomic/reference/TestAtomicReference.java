@@ -23,7 +23,7 @@ import java.util.concurrent.atomic.AtomicReference;
  */
 public class TestAtomicReference {
 
-	public static AtomicReference<User> atomicUserRef = new AtomicReference<User>();
+	public static AtomicReference<User> atomicUserRef = new AtomicReference<>();
 
 	public static void main(String[] args) {
 

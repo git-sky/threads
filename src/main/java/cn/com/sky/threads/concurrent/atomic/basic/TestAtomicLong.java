@@ -7,7 +7,7 @@ public class TestAtomicLong {
 
     public static void main(String[] args) {
         AtomicLong al = new AtomicLong();
-
+        al.addAndGet(1);
 
     }
 

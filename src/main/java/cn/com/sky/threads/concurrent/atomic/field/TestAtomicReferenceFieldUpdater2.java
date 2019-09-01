@@ -1,4 +1,4 @@
-package cn.com.sky.threads.concurrent.atomic.reference;
+package cn.com.sky.threads.concurrent.atomic.field;
 
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 

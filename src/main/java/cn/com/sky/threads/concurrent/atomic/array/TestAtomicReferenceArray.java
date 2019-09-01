@@ -4,8 +4,8 @@ import java.util.concurrent.atomic.AtomicReferenceArray;
 
 public class TestAtomicReferenceArray {
 
-	public static void main(String[] args) {
-		new AtomicReferenceArray(0);
-	}
+    public static void main(String[] args) {
+        AtomicReferenceArray atomicReferenceArray = new AtomicReferenceArray(0);
+    }
 
 }

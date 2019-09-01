@@ -1,4 +1,4 @@
-package cn.com.sky.threads.concurrent.atomic.field;
+package cn.com.sky.threads.concurrent.atomic.reference;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -20,7 +20,7 @@ public class TestAtomicStampedReference {
 
 	private static AtomicInteger atomicInt = new AtomicInteger(100);
 
-	private static AtomicStampedReference<Integer> atomicStampedRef = new AtomicStampedReference<Integer>(100, 0);
+	private static AtomicStampedReference<Integer> atomicStampedRef = new AtomicStampedReference<>(100, 0);
 
 	public static void main(String[] args) throws InterruptedException {
 

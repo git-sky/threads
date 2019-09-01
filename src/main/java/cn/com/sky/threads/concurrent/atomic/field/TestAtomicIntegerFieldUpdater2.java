@@ -17,6 +17,7 @@ import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
  * AtomicStampedReference：原子更新带有版本号的引用类型。该类将整数值与引用关联起来，可用于原子的更数据和数据的版本号，可以解决使用CAS进行原子更新时，可能出现的ABA问题。
  * 
  * 原子更新字段类都是抽象类，每次使用都时候必须使用静态方法newUpdater创建一个更新器。
+ *
  * 原子更新类的字段的必须使用public volatile修饰符。
  * 
  * AtomicIntegerFieldUpdater的例子代码如下：

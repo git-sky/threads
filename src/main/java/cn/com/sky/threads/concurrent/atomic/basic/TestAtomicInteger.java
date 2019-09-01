@@ -1,10 +1,11 @@
 package cn.com.sky.threads.concurrent.atomic.basic;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class TestAtomicInteger {
 
@@ -27,11 +28,7 @@ public class TestAtomicInteger {
 		final int threadSize = 10;
 		Thread[] ts = new Thread[threadSize];
 		for (int i = 0; i < threadSize; i++) {
-			ts[i] = new Thread() {
-				public void run() {
-					value.incrementAndGet();
-				}
-			};
+			ts[i] = new Thread(() -> value.incrementAndGet());
 		}
 		//
 		for (Thread t : ts) {
