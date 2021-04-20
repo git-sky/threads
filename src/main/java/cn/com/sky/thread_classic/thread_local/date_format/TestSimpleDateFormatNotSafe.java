@@ -1,4 +1,4 @@
-package cn.com.sky.thread_classic.thread_local;
+package cn.com.sky.thread_classic.thread_local.date_format;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -18,10 +18,13 @@ public class TestSimpleDateFormatNotSafe {
         System.out.println("today= " + today);
         System.out.println("tomorrow= " + tomorrow);
 
-        Thread thread1 = new Thread(new TaskToday(dateFormat, today));
-        thread1.start();
-        Thread thread2 = new Thread(new TaskTomorrow(dateFormat, tomorrow));
-        thread2.start();
+        for (int i = 0; i < 1000; i++) {
+            Thread thread1 = new Thread(new TaskToday(dateFormat, today));
+            thread1.start();
+            Thread thread2 = new Thread(new TaskTomorrow(dateFormat, tomorrow));
+            thread2.start();
+        }
+
     }
 
 }
@@ -40,12 +43,12 @@ class TaskToday implements Runnable {
         int i = 0;
         for (; ; ) {// 一直循环到出问题为止吧。
             String strDate = dateFormat.format(date);
-            if (!"2019-12-12".equals(strDate)) {
-                System.err.println("today=" + strDate);
+            if (!"2020-07-10".equals(strDate)) {
+                System.err.println("error today=" + strDate);
                 System.exit(0);
             }
             i++;
-            System.out.println("i=" + i);
+            System.out.println(Thread.currentThread().getName() + " i=" + i + " today");
         }
     }
 }
@@ -64,12 +67,13 @@ class TaskTomorrow implements Runnable {
         int j = 0;
         for (; ; ) {
             String strDate = dateFormat.format(date);
-            if (!"2019-12-13".equals(strDate)) {
-                System.err.println("tomorrow=" + strDate);
+            if (!"2020-07-11".equals(strDate)) {
+                System.err.println("error tomorrow=" + strDate);
                 System.exit(0);
             }
             j++;
-            System.out.println("j=" + j);
+            System.out.println(Thread.currentThread().getName() + " j=" + j + " tomorrow");
+
         }
     }
 }

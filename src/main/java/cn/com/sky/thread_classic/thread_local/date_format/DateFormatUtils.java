@@ -1,4 +1,4 @@
-package cn.com.sky.thread_classic.thread_local;
+package cn.com.sky.thread_classic.thread_local.date_format;
 
 
 import java.text.DateFormat;
@@ -9,7 +9,6 @@ import java.util.Date;
 /**
  * <pre>
  *
- *
  * 由于创建一个 SimpleDateFormat 实例的开销比较昂贵，解析字符串时间时频繁创建生命周期短暂的实例导致性能低下。
  *
  * 所以将 SimpleDateFormat 定义为静态类变量。但是 SimpleDateFormat 是非线程安全的。
@@ -19,6 +18,8 @@ import java.util.Date;
  * 使用 Threadlocal 解决了此问题，为每个线程创建一个 SimpleDateFormat 变量的拷贝。
  *
  * 使用ThreadLocal以空间换时间解决SimpleDateFormat线程安全问题。
+ *
+ * 避坑：在线程复用的情况下，注意threadLocal的使用，如果有两个以上的Pattern可能会乱。
  *
  * </pre>
  */

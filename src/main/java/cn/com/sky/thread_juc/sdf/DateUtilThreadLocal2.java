@@ -8,7 +8,7 @@ import java.util.Date;
 public class DateUtilThreadLocal2 {
 
     private static final String date_format = "yyyy-MM-dd HH:mm:ss";
-    private static ThreadLocal<DateFormat> threadLocal = new ThreadLocal<DateFormat>();
+    private static ThreadLocal<DateFormat> threadLocal = new ThreadLocal<>();
 
     public static DateFormat getDateFormat() {
         DateFormat df = threadLocal.get();

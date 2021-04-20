@@ -96,11 +96,11 @@ class TaskCallable implements Callable {
     @Override
     public Object call() throws Exception {
         System.out.println("call()方法被自动调用,干活！！！" + Thread.currentThread().getName());
-        if (new Random().nextBoolean()) {
-            throw new TaskException("Meet error in task." + Thread.currentThread().getName());
-        }
+//        if (new Random().nextBoolean()) {
+//            throw new TaskException("Meet error in task." + Thread.currentThread().getName());
+//        }
         // 一个模拟耗时的操作
-        Thread.sleep(3000);
+        Thread.sleep(5000);
 
         return "call()方法被自动调用，任务的结果是：" + id + "    " + Thread.currentThread().getName();
     }

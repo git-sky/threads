@@ -2,7 +2,7 @@ package cn.com.sky.thread_classic.thread_local;
 
 public class InheritableThreadLocalTest {
 
-    private static InheritableThreadLocal<Integer> threadLocal = new InheritableThreadLocal<Integer>();
+    private static ThreadLocal<Integer> threadLocal = new InheritableThreadLocal<>();
 
 //    private static ThreadLocal<Integer> threadLocal = new ThreadLocal<Integer>();
 
@@ -33,9 +33,13 @@ public class InheritableThreadLocalTest {
             }
         };
 
+        threadLocal.set(1234);
+
         t1.start();
 
         Thread.sleep(1000);
+
+
 
         System.out.println(Thread.currentThread() + " , main value=" + threadLocal.get());
 

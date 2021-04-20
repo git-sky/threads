@@ -1,4 +1,4 @@
-package cn.com.sky.thread_classic.thread_local;
+package cn.com.sky.thread_classic.thread_local.random_demo;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -16,8 +16,11 @@ public class TestThreadLocalRandom {
 
         // 获取特定于当前线程的Random类实例。
         ThreadLocalRandom random = ThreadLocalRandom.current();
+        for (int i = 0; i < 100000; i++) {
 
-        int a = random.nextInt();
-        System.out.println(a);
+//        int a = random.nextInt();
+            int a = random.nextInt(1111, 9999);
+            System.out.println(a);
+        }
     }
 }

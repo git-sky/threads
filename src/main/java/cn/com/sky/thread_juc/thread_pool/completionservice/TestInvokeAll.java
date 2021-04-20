@@ -2,12 +2,7 @@ package cn.com.sky.thread_juc.thread_pool.completionservice;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 
 /**
  * <pre>
@@ -31,11 +26,12 @@ public class TestInvokeAll {
             Callable<Integer> task = new Callable<Integer>() {
                 @Override
                 public Integer call() throws Exception {
-                    int ran = new Random().nextInt(1000);
-                    System.out.println(Thread.currentThread() + ",ran:" + ran);
-                    Thread.sleep(ran);
-                    System.out.println(Thread.currentThread().getName() + " sleep: " + ran);
-                    return ran;
+                    throw new RuntimeException("Callable....");
+//                    int ran = new Random().nextInt(1000);
+//                    System.out.println(Thread.currentThread() + ",ran:" + ran);
+//                    Thread.sleep(ran);
+//                    System.out.println(Thread.currentThread().getName() + " sleep: " + ran);
+//                    return ran;
                 }
             };
 
@@ -43,23 +39,31 @@ public class TestInvokeAll {
         }
 
         for (Callable<Integer> callable : tasks) {
-            System.out.println(callable);
+            System.out.println("callable==" + callable);
         }
 
         long s = System.currentTimeMillis();
 
         //等待所有的任务执行完成后,统一返回。
-        List<Future<Integer>> results = executorService.invokeAll(tasks);
+        List<Future<Integer>> futures = executorService.invokeAll(tasks);
 
         System.out.println("等待所有的任务执行完成后,统一返回。invokeAll: " + (System.currentTimeMillis() - s) + " ms");
 
-        for (int i = 0; i < results.size(); i++) {
+        for (Future<Integer> future : futures) {
             try {
-                System.out.println(results.get(i).get());
+                System.out.println(future.get());
+//            } catch (ExecutionException e1) {
+//                System.out.println("ExecutionException e1....");
+//                e1.printStackTrace();
             } catch (Exception e) {
-                e.printStackTrace();
+                System.out.println("Exception e....");
+//                e.printStackTrace();
             }
         }
+
+        Thread.sleep(5000);
+
+        System.out.println("=====================================");
 
         executorService.shutdown();
 

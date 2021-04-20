@@ -1,4 +1,4 @@
-package cn.com.sky.thread_classic.thread_local;
+package cn.com.sky.thread_classic.thread_local.random_demo;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -18,8 +18,11 @@ import java.util.concurrent.ThreadLocalRandom;
  * 另外一个例子是ThreadLocal和synchronized ，synchronized是在代码使用时加上同步，而使用ThreadLocal是每个线程一个实例，避免使用共享要引入同步。
  */
 public class TestThreadLocalRandom2 {
+
     public static void main(String[] args) {
-        ThreadLocalRandom.current().nextInt();
+        for (int i = 0; i < 100; i++) {
+            System.out.println(ThreadLocalRandom.current().nextInt());
+        }
     }
 
 }

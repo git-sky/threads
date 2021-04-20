@@ -42,6 +42,6 @@ class MyExceptionHandler implements UncaughtExceptionHandler {
         System.out.printf("Exception: %s: %s:\n", e.getClass().getName(), e.getMessage());
         System.out.printf("Thread status:%s\n", t.getState());
         System.out.printf("Stack Trace:\n");
-        e.printStackTrace();
+//        e.printStackTrace();
     }
 }

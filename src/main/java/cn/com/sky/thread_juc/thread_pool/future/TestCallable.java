@@ -19,6 +19,9 @@ import java.util.concurrent.*;
  */
 public class TestCallable {
 
+    private static ThreadLocal<Integer> threadLocal = new InheritableThreadLocal<>();
+
+
     @Test
     public void test() {
         ExecutorService pool = Executors.newCachedThreadPool();
@@ -26,12 +29,31 @@ public class TestCallable {
         // Future相当于是用来存放Executor执行的结果的一种容器
         List<Future<?>> results = new ArrayList<>();
 
-        for (int i = 0; i < 10; i++) {
-            results.add(pool.submit(new TaskCallable(i)));
+        threadLocal.set(11);
+
+        System.out.println("call parent 1=" + threadLocal.get());
+
+
+        try {
+            for (int i = 0; i < 10; i++) {
+                results.add(pool.submit(new TaskCallable(i)));
 //            results.add(pool.submit(new TaskRunnable(i), "run id result=" + i));
+            }
+        } catch (Exception e) {
+            System.out.println("Exception====");
         }
 
-        System.out.println("after submit....");
+        System.out.println("after submit.................");
+
+        threadLocal.set(12);
+        System.out.println("call parent 2=" + threadLocal.get());
+
+
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         try {
             for (Future fs : results) {
@@ -42,11 +64,14 @@ public class TestCallable {
                 }
             }
         } catch (InterruptedException e) {
+            System.out.println("InterruptedException...........");
             e.printStackTrace();
         } catch (ExecutionException e) {
+            System.out.println("ExecutionException...........");
             e.printStackTrace();
         }
 
+        System.out.println(" pool.shutdown..............");
         pool.shutdown();
     }
 
@@ -59,12 +84,21 @@ public class TestCallable {
 
         @Override
         public Object call() throws Exception {
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            return "call result=" + id;
+//            try {
+//                Thread.sleep(3000);
+            System.out.println("call....id=" + id);
+
+            System.out.println("call 1=" + threadLocal.get());
+
+            threadLocal.set(21);
+
+            System.out.println("call 2=" + threadLocal.get());
+
+            throw new RuntimeException("call exception");
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//            return "call result=" + id;
         }
     }
 

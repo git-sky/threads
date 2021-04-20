@@ -15,7 +15,7 @@ public class TestDateUtil {
 
         @Override
         public void run() {
-            for (int i = 0; i < 100000; i++) {
+            for (int i = 0; i < 10000; i++) {
                 // try {
                 // this.join(2000);
                 // } catch (InterruptedException e1) {
@@ -23,15 +23,14 @@ public class TestDateUtil {
                 // }
                 try {
 
-                    // System.out.println(this.getName() + ":" +
-                    // DateUtilNotSafe.parse("2013-05-24 06:02:20"));
-                    // System.out.println(this.getName() + ":" +
-                    // DateUtilSafe.parse("2013-05-24 06:02:20"));
-                    DateUtilSafe.parse("2013-05-24 06:02:20");
-                    // System.out.println(this.getName() + ":" +
-                    // DateUtilSync.parse("2013-05-24 06:02:20"));
-                    // System.out.println(this.getName() + ":" +
-                    // DateUtilThreadLocal.parse("2013-05-24 06:02:20"));
+//                     System.out.println(this.getName() + ":" + DateUtilNotSafe.parse("2013-05-24 06:02:20"));
+//                    System.out.println(date);
+//                    Date date = DateUtilSafe.parse("2013-05-24 06:02:20");
+//                    System.out.println(date);
+//                     System.out.println(this.getName() + ":" +
+//                     DateUtilSync.parse("2013-05-24 06:02:20"));
+                     System.out.println(this.getName() + ":" +
+                     DateUtilThreadLocal.parse("2013-05-24 06:02:20"));
                     // System.out.println(this.getName() + ":" +
                     // DateUtilThreadLocal2.parse("2013-05-24 06:02:20"));
 
@@ -46,8 +45,8 @@ public class TestDateUtil {
     public static void main(String[] args) {
         long begin = System.currentTimeMillis();
         System.out.println(begin);
-        CountDownLatch cdl = new CountDownLatch(100);
-        for (int i = 0; i < 100; i++) {
+        CountDownLatch cdl = new CountDownLatch(200);
+        for (int i = 0; i < 200; i++) {
             new TestSafe(cdl).start();
         }
         try {
