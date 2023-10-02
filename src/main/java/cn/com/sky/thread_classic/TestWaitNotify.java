@@ -2,12 +2,15 @@ package cn.com.sky.thread_classic;
 
 import java.util.concurrent.TimeUnit;
 
+<<<<<<< HEAD
 /**
  * 线程间通信:
  * wait/notify是object对象的方法。
  * 1、wait/notify与synchronized配合使用的。
  * 2、wait释放锁，notify不释放锁。
  */
+=======
+>>>>>>> 01973c00a2a3c5a750f4596c194ed9d1a3b92651
 public class TestWaitNotify {
 
     public static void main(String[] args) {
