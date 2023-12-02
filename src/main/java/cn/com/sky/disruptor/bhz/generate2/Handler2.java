@@ -1,10 +1,10 @@
 package cn.com.sky.disruptor.bhz.generate2;
 
-import bhz.generate1.Trade;
 
+import cn.com.sky.disruptor.bhz.generate1.Trade;
 import com.lmax.disruptor.EventHandler;
 
-public class Handler2 implements EventHandler<Trade> {  
+public class Handler2 implements EventHandler<Trade> {
 	  
     @Override  
     public void onEvent(Trade event, long sequence,  boolean endOfBatch) throws Exception {  

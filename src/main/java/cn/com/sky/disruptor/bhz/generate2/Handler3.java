@@ -1,8 +1,9 @@
 package cn.com.sky.disruptor.bhz.generate2;
 
-import bhz.generate1.Trade;
 
 import com.lmax.disruptor.EventHandler;
+import cn.com.sky.disruptor.bhz.generate1.Trade;
+
 
 public class Handler3 implements EventHandler<Trade> {
     @Override  

@@ -3,7 +3,7 @@ package cn.com.sky.disruptor.bhz.generate2;
 import java.util.Random;
 import java.util.concurrent.CountDownLatch;
 
-import bhz.generate1.Trade;
+import cn.com.sky.disruptor.bhz.generate1.Trade;
 
 import com.lmax.disruptor.EventTranslator;
 import com.lmax.disruptor.dsl.Disruptor;
