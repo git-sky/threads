@@ -58,6 +58,8 @@ class Godown {
     public static final int max_size = 100; // 最大库存量
     public int curnum; // 当前库存量
 
+//    private Object obj = new Object();
+
     Godown() {
     }
 
@@ -75,7 +77,7 @@ class Godown {
             try {
                 System.out.println("生产者线程-----当前线程名称：" + Thread.currentThread().getName());
                 // 当前的生产线程等待,释放Godown的当前对象锁
-                wait();
+                this.wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -84,7 +86,7 @@ class Godown {
         curnum += neednum;
         System.out.println("已经生产了" + neednum + "个产品，现仓储量为" + curnum);
         // 唤醒在此对象监视器上等待的所有线程
-        notifyAll();
+        this.notifyAll();
     }
 
     /**
@@ -96,7 +98,7 @@ class Godown {
             try {
                 System.out.println("before wait 消费者线程-----当前线程名称：" + Thread.currentThread().getName());
                 // 当前的消费线程等待，释放Godown的当前对象锁
-                wait();
+                this.wait();
                 System.out.println("after wait 消费者线程-----当前线程名称：" + Thread.currentThread().getName());
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -106,7 +108,7 @@ class Godown {
         curnum -= neednum;
         System.out.println("已经消费了" + neednum + "个产品，现仓储量为" + curnum);
         // 唤醒在此对象监视器上等待的所有线程
-        notifyAll();
+        this.notifyAll();
     }
 }
 

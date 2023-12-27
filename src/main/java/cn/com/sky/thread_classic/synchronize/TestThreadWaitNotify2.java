@@ -19,10 +19,8 @@ import java.util.List;
  * 同步是协调多个相互关联线程合作完成任务，彼此之间知道对方存在，执行顺序往往是有序的。
  *
  *
- *
  * synchronized实现线程互斥。
  * wait与notify/notifyAll实现线程同步。
- *
  *
  *
  * wait()、wait(0)、wait(0,0)

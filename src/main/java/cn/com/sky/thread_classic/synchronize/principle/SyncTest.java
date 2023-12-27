@@ -6,8 +6,9 @@ package cn.com.sky.thread_classic.synchronize.principle;
  * synchronized使用的场景很广，既能够锁住类方法（static），又能够锁住对象方法（非static）。既能够对某个属性加锁，又能够对this加锁。
  *
  * Java的synchronized关键字锁的是一个对象的内置锁（被称为intrinsic lock 或 monitor lock）。
- * Synchronized Methods 和 Synchronized Statements的区别在于，前者自动帮你锁了当前调用方法的对象实例（若Static方法则锁类对象）。
- * 不像synchronized methods，synchronized statements必须指定提供intrinsic lock的对象。
+ * Synchronized Methods 和 Synchronized Statements的区别在于，
+ * 前者自动帮你锁了当前调用方法的对象实例（若Static方法则锁类对象）。
+ * synchronized statements必须指定提供intrinsic lock的对象。
  *
  * 非static的synchronized方法和synchronized(this)用的是一个锁。
  *
