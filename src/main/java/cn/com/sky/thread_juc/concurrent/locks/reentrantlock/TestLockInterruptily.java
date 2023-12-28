@@ -1,4 +1,4 @@
-package cn.com.sky.thread_juc.concurrent.locks.lock;
+package cn.com.sky.thread_juc.concurrent.locks.reentrantlock;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -28,6 +28,7 @@ public class TestLockInterruptily {
 
 	public void insert(Thread thread) throws InterruptedException {
 		try {
+			//获取锁之后，不会再响应中断了；只有等待锁的时候，才能响应中断。
 			lock.lockInterruptibly(); // 注意，如果需要正确中断等待锁的线程，必须将获取锁放在外面，然后将InterruptedException抛出
 			System.out.println(thread.getName() + " get lock ");
 			long startTime = System.currentTimeMillis();

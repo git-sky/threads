@@ -1,4 +1,4 @@
-package cn.com.sky.thread_juc.concurrent.locks.lock.model;
+package cn.com.sky.thread_juc.concurrent.locks.reentrantlock.model;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -8,6 +8,9 @@ public class TestTryLock {
 	public static void main(String[] args) {
 		Lock lock = new ReentrantLock();
 
+		/**
+		 * 尝试cas抢锁，抢锁失败则返回。
+		 */
 		if (lock.tryLock()) {
 			try {
 				// 处理任务

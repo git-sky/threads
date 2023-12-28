@@ -1,4 +1,4 @@
-package cn.com.sky.thread_juc.concurrent.locks.lock;
+package cn.com.sky.thread_juc.concurrent.locks.reentrantlock;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;

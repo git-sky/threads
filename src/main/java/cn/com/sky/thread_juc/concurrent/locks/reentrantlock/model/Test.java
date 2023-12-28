@@ -1,14 +1,15 @@
-package cn.com.sky.thread_juc.concurrent.locks.lock.model;
+package cn.com.sky.thread_juc.concurrent.locks.reentrantlock.model;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class Test {
 
 	public static void main(String[] args) {
 
-		ReentrantLock lock = new ReentrantLock();
+		Lock lock = new ReentrantLock();
 		
 		lock.lock();
 		lock.unlock();

@@ -11,7 +11,8 @@ import java.util.concurrent.locks.ReentrantLock;
  * 用signal()替换notify()，
  * 用signalAll()替换notifyAll()，
  * 
- * 传统线程的通信方式，Condition都可以实现，这里注意，Condition是被绑定到Lock上的，要创建一个Lock的Condition必须用newCondition()方法。
+ * 传统线程的通信方式，Condition都可以实现。
+ * 这里注意，Condition是被绑定到Lock上的，要创建一个Lock的Condition必须用newCondition()方法。
  * 
  * </pre>
  *
@@ -19,14 +20,18 @@ import java.util.concurrent.locks.ReentrantLock;
 public class TestCondition {
 
 	public static void main(String[] args) {
+
 		final BusinessDemo business = new BusinessDemo();
+
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
 				execute(business, "sub");
 			}
 		}).start();
+
 		execute(business, "main");
+
 	}
 
 	public static void execute(BusinessDemo business, String threadType) {
