@@ -15,6 +15,10 @@ import org.junit.Test;
  */
 public class TestThreadJoin2 {
 
+    public static void main(String[] args) {
+        new TestThreadJoin2().test();
+    }
+
     @Test
     public void test() {
         System.out.println("main...............开始");
@@ -28,6 +32,8 @@ public class TestThreadJoin2 {
             System.out.println("main has been waked up..........");
             // t2.join();
         } catch (InterruptedException e) {
+            //join被中断时是会擦除中断标志的，抛异常的同时，该线程的中断状态会被清除。所以下面打印false。
+            System.out.println("中断标志：" + Thread.currentThread().isInterrupted());
             e.printStackTrace();
         }
 

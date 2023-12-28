@@ -21,9 +21,9 @@ public class TestLockSupport {
 //		 LockSupport.park();
 //		 System.out.println("i am blocked...");
 //		
-		 Thread thread = Thread.currentThread();
-		 LockSupport.unpark(thread);// 释放许可
-		 System.out.println("i am unpark...");
+//		 Thread thread = Thread.currentThread();
+//		 LockSupport.unpark(thread);// 释放许可
+//		 System.out.println("i am unpark...");
 //		 LockSupport.unpark(thread);// 释放许可
 //		 System.out.println("i am ok...");
 //		 LockSupport.park(thread);// 获取许可
@@ -56,8 +56,14 @@ public class TestLockSupport {
 
 				System.out.println("after 1 second.count=" + count);
 
-				// 等待许可
-				LockSupport.park();
+				try {
+					// 等待许可
+					LockSupport.park();
+				}catch (Exception e){
+					//中断park, 不会清空中断状态，也不会抛出InterruptedException。
+					System.out.println("不会执行到这里。。。");
+				}
+
 
 				// 线程如果因为调用park而阻塞的话，能够响应中断请求(中断状态被设置成true)，但是不会抛出InterruptedException 。
 				System.out.println("thread over..isInterrupted=" + Thread.currentThread().isInterrupted());
@@ -69,7 +75,7 @@ public class TestLockSupport {
 
 		Thread.sleep(5000);
 
-		// 中断线程
+		// 中断线程t
 		t.interrupt();
 
 		System.out.println("main over");

@@ -9,10 +9,14 @@ public class ThreadInterruptWait extends Thread {
     public synchronized void run() {
         while (true) {
             try {
-                wait();
+                System.out.println("before wait");
+                this.wait();
+                System.out.println("after wait");
             } catch (InterruptedException e) {
                 e.printStackTrace();
                 System.out.println(e.getMessage());
+                //wait被中断时是会擦除中断标志的，抛异常的同时，该线程的中断状态会被清除。所以下面打印false。
+                System.out.println("中断状态：" + Thread.currentThread().isInterrupted());
             }
         }
     }

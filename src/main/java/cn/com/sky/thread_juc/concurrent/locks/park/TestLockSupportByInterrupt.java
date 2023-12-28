@@ -8,21 +8,24 @@ import java.util.concurrent.locks.LockSupport;
  */
 public class TestLockSupportByInterrupt {
 
-	public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException {
 
-		final Thread t = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				LockSupport.park();
-				System.out.println(Thread.currentThread() + " awake!");
-			}
-		});
-		t.setName("t1");
-		t.start();
-		Thread.sleep(3000);
+        final Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                LockSupport.park();
+                System.out.println(Thread.currentThread() + " awake!");
 
-		// 2. 中断
-		t.interrupt();
-		System.out.println(t.isInterrupted());
-	}
+                //park可以响应中断，中断park后, 不会清空中断状态，也不会抛出InterruptedException。
+                System.out.println("中断状态1：" + Thread.currentThread().isInterrupted());
+            }
+        });
+        t.setName("t1");
+        t.start();
+        Thread.sleep(3000);
+
+        // 2. 中断
+        t.interrupt();
+        System.out.println("中断状态2：" +t.isInterrupted());
+    }
 }

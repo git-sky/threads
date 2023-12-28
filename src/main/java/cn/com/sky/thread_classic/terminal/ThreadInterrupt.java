@@ -15,7 +15,9 @@ public class ThreadInterrupt extends Thread {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
+                System.out.println("InterruptedException:" + Thread.currentThread().isInterrupted());
                 e.printStackTrace();
+                throw new RuntimeException();
             }
 
         }

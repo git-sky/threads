@@ -51,6 +51,7 @@ public class TestInterrupt {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
+            //sleep被中断时是会擦除中断标志的，抛异常的同时，该线程的中断状态会被清除。所以需要再次中断一次。
             System.out.println("interrupt");
             Thread.currentThread().interrupt();
         }

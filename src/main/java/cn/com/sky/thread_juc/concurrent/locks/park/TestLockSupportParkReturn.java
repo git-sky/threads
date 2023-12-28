@@ -5,7 +5,7 @@ import org.junit.Test;
 import java.util.concurrent.locks.LockSupport;
 
 /**
- * park的返回时机，除了下面的四种，有时候会无理由的返回。
+ * park的返回时机，有下面的四种。
  *
  * 返回时机：
  * 1.unpark
